@@ -1,5 +1,5 @@
 import AiText from "./components/AiText"
-import Options from "./components/Options"
+import Options from "./components/Options/Options"
 
 function App() {
 
