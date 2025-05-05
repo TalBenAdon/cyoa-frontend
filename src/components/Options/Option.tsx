@@ -1,10 +1,10 @@
 
-export type OptionType = { text: string}
+export type OptionProps = { text: string }
 
 
-export default function Option({text} : OptionType) {
-    console.log({"option": text});
-    
+export default function Option({ text }: OptionProps) {
+    console.log({ "option": text });
+
     return (
         <button>
             {text}

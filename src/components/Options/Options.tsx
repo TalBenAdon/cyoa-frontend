@@ -1,15 +1,20 @@
-import Option, { OptionType } from "./Option"
+import Option from "./Option";
 
 type OptionsProps = {
-    options: OptionType[]
+    options: string[]
 }
 
-export default function Options({options} : OptionsProps) {
+export default function Options({ options }: OptionsProps) {
 
-    
+    console.log({ "options": options });
+
     return (
-            <ul className="flex bg-white shrink-0 rounded-2xl h-52 mt-6 ">
-            {options.map((option, i) => <li key={i}><Option text={option.text}/></li>)}
-            </ul>
+        <ul className="flex bg-white shrink-0 rounded-2xl h-52 mt-6 lg:mx-52 ">
+            {options.map((option, i) => {
+
+
+                return <li key={i}><Option text={option} /></li>
+            })}
+        </ul>
     )
 }
