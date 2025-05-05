@@ -39,7 +39,7 @@ function App() {
   return (
     <main className="flex min-h-screen bg-[#ddb4ab] flex-col p-6 ">
 
-      <AiText />
+      <AiText text={aiReply?.text} />
       {info?.status == 0 && !aiReply ? <button onClick={onStartClick}>start new cyoa</button> : ""}
 
       {aiReply ? <Options options={aiReply.options} /> : ""}
