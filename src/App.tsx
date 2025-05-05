@@ -41,7 +41,9 @@ function App() {
     
     <AiText/>
     {info?.status == 0 && !aiReply ? <button onClick={onStartClick}>start new cyoa</button> : ""}
-    {/* <Options options={} /> */}
+
+    {aiReply ? <Options options={aiReply.options} /> : ""}
+    
     </main>
   )
 }

@@ -5,11 +5,11 @@ type OptionsProps = {
 }
 
 export default function Options({options} : OptionsProps) {
+
+    
     return (
-        <div className="flex bg-white shrink-0 rounded-2xl h-52 mt-6 ">
-            <ul>
+            <ul className="flex bg-white shrink-0 rounded-2xl h-52 mt-6 ">
             {options.map((option, i) => <li key={i}><Option text={option.text}/></li>)}
             </ul>
-        </div>
     )
 }
