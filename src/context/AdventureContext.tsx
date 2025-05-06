@@ -78,21 +78,37 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
         while (true) {
             const { value, done } = await reader!.read();
-            if (done) break;
+            if (done) {
+                setOptions((prev) => {
+                    const parsedPrev = prev.map(element => {
+                        return element.trim()
+                    });
+                    return parsedPrev
+                })
+                break;
+            }
 
             const chunk = decoder.decode(value, { stream: true });
             bufferRef.current += chunk;
             console.log({ "currentTag": currentTag });
+            console.log({ "currentBuffer": bufferRef.current });
 
 
             const tagStart = bufferRef.current.lastIndexOf("<");
-            const tagEnd = bufferRef.current.lastIndexOf(">");
+            const tagEnd = bufferRef.current.indexOf(">", tagStart);
 
             if (tagStart !== -1) { // tag start found
                 console.log({ "tag start detected!:": bufferRef.current });
+                console.log(tagEnd);
 
                 if (tagEnd !== -1) { //tag end also found
-                    currentTag = bufferRef.current.slice(tagStart + 1, tagEnd) //extracting current tag
+                    if (bufferRef.current.includes("<") && bufferRef.current.includes("/>")) {
+                        const endTagStart = bufferRef.current.indexOf("<")
+                        const endTagEnd = bufferRef.current.indexOf("/>")
+                        bufferRef.current = bufferRef.current.slice(0, endTagStart) + bufferRef.current.slice(endTagEnd + 2).trim()
+                        continue
+                    }
+                    currentTag = bufferRef.current.slice(tagStart + 1, tagEnd).trim() //extracting current tag
                     console.log(currentTag);
                     bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag from the buffer
                     const toAppend = bufferRef.current;
