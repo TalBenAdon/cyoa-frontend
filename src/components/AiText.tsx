@@ -1,13 +1,13 @@
-type AiTextProps = {
-    text: string | undefined
-}
+import { useAdventure } from "../context/AdventureContext"
 
-export default function AiText({ text }: AiTextProps) {
+
+export default function AiText() {
+    const { story } = useAdventure()
     return (
         <div className="flex bg-white grow rounded-2xl md:h-52 lg:mx-52 justify-center items-center p-6">
             <p className="whitespace-pre-wrap">
 
-                {text}
+                {story}
             </p>
 
         </div>

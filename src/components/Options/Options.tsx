@@ -1,22 +1,24 @@
+
+import { useAdventure } from "../../context/AdventureContext";
 import Option from "./Option";
 
-type OptionsProps = {
-    options: string[]
-}
 
-export default function Options({ options }: OptionsProps) {
+export default function Options() {
+    const { options, streamAIResponse } = useAdventure()
+    const handleClick = async (choice: string) => {
+        await streamAIResponse("http://localhost:8000/adventure/choice", { choice })
+    }
 
-    console.log({ "options": options });
 
     return (
         <ul className="flex bg-white shrink-0 flex-col  rounded-2xl h-52 mt-6 lg:mx-52 ">
             {options.map((option, i) => {
 
-                return <li className="flex grow" key={i}><Option text={option} /></li>
+                return <li className="flex grow" key={i}><Option handleClick={handleClick} text={option} /></li>
             })}
-            <li className="flex grow">
-                <Option text="Custom" />
-            </li>
+            {/* <li className="flex grow">
+                <Option handleClick={handleClick} text="Custom" />
+            </li> */}
         </ul>
     )
 }
