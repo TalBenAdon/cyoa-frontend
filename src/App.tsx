@@ -11,20 +11,17 @@ type adventureInfo = {
   history: string[]
 }
 
-type aiReply = {
-  text: string,
-  options: string[]
-}
+
 
 function App() {
-  const [aiFullString, setAiFullString] = useState<string>("")
+
   const [adventureStory, setAdventureStory] = useState<string>("")
   const [options, setOptions] = useState<string[]>([])
-  const [aiReply, setAiReply] = useState<aiReply>()
+
   const [info, setInfo] = useState<adventureInfo>()
 
   const bufferRef = useRef("")
-  const isStreaming = useRef(false)
+
 
 
 
@@ -43,6 +40,7 @@ function App() {
 
     let currentTag = ""
 
+    // a switch case to append the correct text to the correct useState
     const appendingFunction = (toAppend: string, currentTag: string) => {
       switch (currentTag) {
 
@@ -91,46 +89,29 @@ function App() {
         console.log({ "tag start detected!:": bufferRef.current });
 
         if (tagEnd !== -1) { //tag end also found
-          currentTag = bufferRef.current.slice(tagStart + 1, tagEnd)
+          currentTag = bufferRef.current.slice(tagStart + 1, tagEnd) //extracting current tag
           console.log(currentTag);
-          bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag
+          bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag from the buffer
           const toAppend = bufferRef.current;
 
-          appendingFunction(toAppend, currentTag)
-          bufferRef.current = "";
+          appendingFunction(toAppend, currentTag) //appending buffer to correct placement
+          bufferRef.current = ""; // buffer cleanup
         } else {
           continue
         }
 
       } else {
+        // if no tag found, append to correct placement and cleanup as usual
         const toAppend = bufferRef.current;
         appendingFunction(toAppend, currentTag)
         bufferRef.current = "";
       }
 
-      // if (tagStart > tagEnd) {
-
-
-
-      //   bufferRef.current = bufferRef.current.slice(tagStart + bufferRef.current.length);
-      //   console.log(bufferRef.current);
-
-      // } else {
-
-      //   const toAppend = bufferRef.current;
-      //   setAdventureStory(prev => prev + toAppend);
-      //   bufferRef.current = "";
-      // }
-
 
     }
 
   };
-  async function onStartClick() {
-    const response = await httpClient.post<aiReply>("/adventure/start")
-    console.log(response.data);
-    setAiReply(response.data)
-  }
+
 
   useEffect(() => {
     async function getAdventureInfo() {
@@ -143,11 +124,12 @@ function App() {
     getAdventureInfo()
   }, [])
 
+
   return (
     <main className="flex min-h-screen bg-[#ddb4ab] flex-col p-6 ">
 
       <AiText text={adventureStory} />
-      {info?.status == 0 && !aiReply ? <button onClick={fetchStreamedChat}>start new cyoa</button> : ""}
+      {info?.status == 0 ? <button onClick={fetchStreamedChat}>start new cyoa</button> : ""}
 
       {options.length > 0 ? <Options options={options} /> : ""}
 
