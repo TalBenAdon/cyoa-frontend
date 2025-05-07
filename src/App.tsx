@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import AiText from "./Components/UI/AIChat/AiText"
 
 import httpClient from "./api/httpClient"
-import { useAdventure } from "./Components/UI/AdventureContext"
+import { useAdventure } from "./context/AdventureContext"
 import Options from "./Components/UI/AIChat/Options"
 
 

@@ -1,4 +1,4 @@
-import { useAdventure } from "../AdventureContext"
+import { useAdventure } from "../../../context/AdventureContext"
 
 
 export default function AiText() {

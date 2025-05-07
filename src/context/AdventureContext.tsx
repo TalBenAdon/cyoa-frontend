@@ -75,10 +75,10 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
         // a switch case to append the correct text to the correct useState
 
-        
+
         while (true) {
             const { value, done } = await reader!.read();
-            if (done)  break;
+            if (done) break;
 
             const chunk = decoder.decode(value, { stream: true });
             bufferRef.current += chunk;
@@ -91,7 +91,7 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
             if (tagStart !== -1) { // tag start found
                 console.log({ "tag start detected!:": bufferRef.current });
                 // console.log(tagEnd);
-          
+
 
                 if (tagEnd !== -1) { //tag end also found
                     // does buffer has 2 tags?
@@ -102,19 +102,19 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
                     }
 
                     const tagToCheck = bufferRef.current.slice(tagStart + 1, tagEnd).trim()
-                    if (!tagToCheck.includes("/") && !tagToCheck.includes("\\") ) {
-           
+                    if (!tagToCheck.includes("/") && !tagToCheck.includes("\\")) {
+
                         currentTag = bufferRef.current.slice(tagStart + 1, tagEnd).trim() //extracting current tag
-                        console.log({"Tag Changed!":currentTag});
+                        console.log({ "Tag Changed!": currentTag });
                         bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag from the buffer
                         const toAppend = bufferRef.current;
-    
+
                         appendingFunction(toAppend, currentTag) //appending buffer to correct placement
                         bufferRef.current = ""; // buffer cleanup
                     } else {
 
-                        
-                        bufferRef.current = bufferRef.current.slice(tagEnd + 1)  
+
+                        bufferRef.current = bufferRef.current.slice(tagEnd + 1)
                         // const toAppend = bufferRef.current;
                         continue
                         // appendingFunction(toAppend, currentTag) //appending buffer to correct placement
@@ -122,7 +122,7 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
                     }
 
                 } else {
-                     
+
                     continue
                 }
 
