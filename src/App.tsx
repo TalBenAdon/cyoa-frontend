@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import AiText from "./components/AiText"
-import Options from "./components/Options/Options"
+import AiText from "./Components/UI/AIChat/AiText"
+
 import httpClient from "./api/httpClient"
-import { useAdventure } from "./context/AdventureContext"
+import { useAdventure } from "./Components/UI/AdventureContext"
+import Options from "./Components/UI/AIChat/Options"
 
 
 
