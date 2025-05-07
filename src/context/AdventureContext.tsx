@@ -73,8 +73,6 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
         reset()
         let currentTag = ""
 
-        // a switch case to append the correct text to the correct useState
-
 
         while (true) {
             const { value, done } = await reader!.read();
@@ -90,7 +88,7 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
             if (tagStart !== -1) { // tag start found
                 console.log({ "tag start detected!:": bufferRef.current });
-                // console.log(tagEnd);
+
 
 
                 if (tagEnd !== -1) { //tag end also found
@@ -117,12 +115,12 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
                         bufferRef.current = bufferRef.current.slice(tagEnd + 1)
                         // const toAppend = bufferRef.current;
                         continue
-                        // appendingFunction(toAppend, currentTag) //appending buffer to correct placement
-                        // bufferRef.current = ""; // buffer cleanup
+
                     }
 
                 } else {
-
+                    const trailText = bufferRef.current.slice(0, tagStart)
+                    appendingFunction(trailText, currentTag)
                     continue
                 }
 
