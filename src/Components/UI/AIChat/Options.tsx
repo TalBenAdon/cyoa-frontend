@@ -1,5 +1,4 @@
-
-import { useAdventure } from "../../context/AdventureContext";
+import { useAdventure } from "../../../context/AdventureContext";
 import Option from "./Option";
 
 

@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { AdventureProvider } from './context/AdventureContext.tsx'
-import { createBrowserRouter, redirect } from 'react-router'
+import { createBrowserRouter, redirect, RouterProvider } from 'react-router'
+import VenturePage from './pages/VenturePage.tsx'
 
 let router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ let router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AdventureProvider>
-      <App />
+      <RouterProvider router={router} />
     </AdventureProvider>
   </StrictMode>,
 )
