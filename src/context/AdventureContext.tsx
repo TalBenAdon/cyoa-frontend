@@ -1,12 +1,36 @@
 import { createContext, ReactNode, useContext, useRef, useState } from "react";
+import httpClient from "../api/httpClient";
 
 
 type AdventureContextType = {
+    adventureId: string | null;
+    setAdventureId: (id: string) => void
+    getAdventureInfo: (id: string) => void
     story: string;
     options: string[];
     streamAIResponse: (url: string, payload: any) => Promise<void>;
     reset: () => void;
+    idList: string[]
+    getAdventuresIds: () => void;
+    adventureInfo: AdventureInfoResponse | null
 }
+
+type History = {
+    text: string;
+    options: string[];
+    scene: number  
+  }[]
+  
+  type AdventureInfoResponse = {
+      id: string;
+      type: string;
+      sceneNumber: number;
+      history: History
+  }
+
+  type AdventuresList = {
+    adventuresIds: string[]
+  }
 
 
 const AdventureContext = createContext<AdventureContextType | undefined>(undefined);
@@ -14,7 +38,10 @@ const AdventureContext = createContext<AdventureContextType | undefined>(undefin
 export const AdventureProvider = ({ children }: { children: ReactNode }) => {
     const [story, setStory] = useState<string>("")
     const [options, setOptions] = useState<string[]>([])
+    const [adventureInfo, setAdventureInfo] = useState<AdventureInfoResponse | null>(null)
+    const [adventureId, setAdventureId] = useState<string | null>(null)
     const bufferRef = useRef("");
+    const [idList, setIdList] = useState<string[]>([])
 
     const reset = () => {
         setStory("")
@@ -66,6 +93,13 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
             },
             body: JSON.stringify(payload),
         });
+
+        const thisAdventureId = response.headers.get("X-Adventure-ID")
+
+        if (thisAdventureId) {
+            setAdventureId(thisAdventureId)
+        }
+      
 
         const reader = response.body?.getReader();
         const decoder = new TextDecoder("utf-8");
@@ -136,8 +170,35 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
     };
 
+    const getAdventureInfo = async (adventureId: string) => {
+        const response = await httpClient.get<AdventureInfoResponse>(`/adventure/info/${adventureId}`)
+        const advInfo = response.data
+        setAdventureInfo(advInfo)
+
+        reset()
+
+        const latestScene = advInfo.history[advInfo.history.length - 1]
+       
+        
+        setStory(latestScene.text)
+        setOptions(latestScene.options)
+     
+    }
+
+         const  getAdventuresIds =  async () => {
+            const response = await httpClient.get<AdventuresList>("adventure/adventures")
+            const ids = response.data.adventuresIds
+            console.log(ids);
+            setIdList(ids)
+
+
+            if(ids.length > 0){
+                setAdventureId(ids[0])
+            }
+        }
+
     return (
-        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset }}>
+        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset, adventureId, setAdventureId, getAdventureInfo, idList,getAdventuresIds, adventureInfo }}>
             {children}
         </AdventureContext.Provider>
     )

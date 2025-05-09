@@ -1,43 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAdventure } from "../context/AdventureContext";
-import httpClient from "../api/httpClient";
 import AiText from "../Components/UI/AIChat/AiText";
 import Options from "../Components/UI/AIChat/Options";
 
 
-type adventureInfo = {
-    type: string
-    status: number
-    history: string[]
-}
+
+
 
 export default function VenturePage() {
-    const { options, streamAIResponse, reset } = useAdventure()
-    const [info, setInfo] = useState<adventureInfo>()
+    const { options, streamAIResponse, reset, adventureId, getAdventureInfo, getAdventuresIds, idList, adventureInfo } = useAdventure()
+  
 
 
 
     useEffect(() => {
-        async function getAdventureInfo() {
-            const response = await httpClient.get<adventureInfo>("/adventure/info")
-            console.log(response.data);
-
-            setInfo(response.data)
-        }
-
-        getAdventureInfo()
+    
+        getAdventuresIds()
     }, [])
 
     const onStartButtonClick = async () => {
         reset()
-        streamAIResponse("http://localhost:8000/adventure/start", { type: "fantasy" })
+        streamAIResponse("http://localhost:8000/adventure/start", { type: "fantasy" }, )
+
+        if (adventureId) {
+            getAdventureInfo(adventureId)
+        }
     }
+
+  
 
     return (
         <>
             <AiText />
-            {info && options.length == 0 ? <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button> : ""}
             {options.length > 0 ? <Options /> : ""}
+            {options.length == 0 ? <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button> : ""}
+            <p>{idList.length}</p>
+            { adventureInfo ? <p>scnene num: {adventureInfo.sceneNumber}</p> :"scnene num: 0"}
+            {adventureId ? <button className="cursor-pointer" onClick={() => getAdventureInfo(adventureId)}>{adventureId}</button>: "no id"}
         </>
     )
 }

@@ -3,9 +3,14 @@ import Option from "./Option";
 
 
 export default function Options() {
-    const { options, streamAIResponse } = useAdventure()
+    const { options, streamAIResponse, adventureId,getAdventureInfo } = useAdventure()
     const handleClick = async (choice: string) => {
-        await streamAIResponse("http://localhost:8000/adventure/choice", { choice })
+        await streamAIResponse(`http://localhost:8000/adventure/choice/${adventureId}`, { choice })
+        
+        if (adventureId) {
+            
+            getAdventureInfo(adventureId)
+        }
     }
 
 
