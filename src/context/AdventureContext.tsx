@@ -73,49 +73,54 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
         reset()
         let currentTag = ""
 
-        // a switch case to append the correct text to the correct useState
-
 
         while (true) {
             const { value, done } = await reader!.read();
-            if (done) {
-                setOptions((prev) => {
-                    const parsedPrev = prev.map(element => {
-                        return element.trim()
-                    });
-                    return parsedPrev
-                })
-                break;
-            }
+            if (done) break;
 
             const chunk = decoder.decode(value, { stream: true });
             bufferRef.current += chunk;
             console.log({ "currentTag": currentTag });
             console.log({ "currentBuffer": bufferRef.current });
 
-
-            const tagStart = bufferRef.current.lastIndexOf("<");
+            const tagStart = bufferRef.current.indexOf("<");
             const tagEnd = bufferRef.current.indexOf(">", tagStart);
 
             if (tagStart !== -1) { // tag start found
                 console.log({ "tag start detected!:": bufferRef.current });
-                console.log(tagEnd);
+
+
 
                 if (tagEnd !== -1) { //tag end also found
-                    if (bufferRef.current.includes("<") && bufferRef.current.includes("/>")) {
-                        const endTagStart = bufferRef.current.indexOf("<")
-                        const endTagEnd = bufferRef.current.indexOf("/>")
-                        bufferRef.current = bufferRef.current.slice(0, endTagStart) + bufferRef.current.slice(endTagEnd + 2).trim()
-                        continue
+                    // does buffer has 2 tags?
+                    const matches = bufferRef.current.match(/<[^>]+>/g);
+                    if (matches && matches.length >= 2) {
+                        console.log("two tags within the buffer");
+                        bufferRef.current = matches[1]
                     }
-                    currentTag = bufferRef.current.slice(tagStart + 1, tagEnd).trim() //extracting current tag
-                    console.log(currentTag);
-                    bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag from the buffer
-                    const toAppend = bufferRef.current;
 
-                    appendingFunction(toAppend, currentTag) //appending buffer to correct placement
-                    bufferRef.current = ""; // buffer cleanup
+                    const tagToCheck = bufferRef.current.slice(tagStart + 1, tagEnd).trim()
+                    if (!tagToCheck.includes("/") && !tagToCheck.includes("\\")) {
+
+                        currentTag = bufferRef.current.slice(tagStart + 1, tagEnd).trim() //extracting current tag
+                        console.log({ "Tag Changed!": currentTag });
+                        bufferRef.current = bufferRef.current.slice(0, tagStart) + bufferRef.current.slice(tagEnd + 1) // cut away the tag from the buffer
+                        const toAppend = bufferRef.current;
+
+                        appendingFunction(toAppend, currentTag) //appending buffer to correct placement
+                        bufferRef.current = ""; // buffer cleanup
+                    } else {
+
+
+                        bufferRef.current = bufferRef.current.slice(tagEnd + 1)
+                        // const toAppend = bufferRef.current;
+                        continue
+
+                    }
+
                 } else {
+                    const trailText = bufferRef.current.slice(0, tagStart)
+                    appendingFunction(trailText, currentTag)
                     continue
                 }
 
