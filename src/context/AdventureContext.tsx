@@ -18,19 +18,19 @@ type AdventureContextType = {
 type History = {
     text: string;
     options: string[];
-    scene: number  
-  }[]
-  
-  type AdventureInfoResponse = {
-      id: string;
-      type: string;
-      sceneNumber: number;
-      history: History
-  }
+    scene: number
+}[]
 
-  type AdventuresList = {
+type AdventureInfoResponse = {
+    id: string;
+    type: string;
+    sceneNumber: number;
+    history: History
+}
+
+type AdventuresList = {
     adventuresIds: string[]
-  }
+}
 
 
 const AdventureContext = createContext<AdventureContextType | undefined>(undefined);
@@ -94,12 +94,16 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
             body: JSON.stringify(payload),
         });
 
-        const thisAdventureId = response.headers.get("X-Adventure-ID")
 
+
+
+
+        const thisAdventureId = response.headers.get("X-Adventure-ID")
+        console.log(thisAdventureId);
         if (thisAdventureId) {
             setAdventureId(thisAdventureId)
         }
-      
+
 
         const reader = response.body?.getReader();
         const decoder = new TextDecoder("utf-8");
@@ -110,7 +114,9 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
         while (true) {
             const { value, done } = await reader!.read();
-            if (done) break;
+            if (done) {
+                break;
+            }
 
             const chunk = decoder.decode(value, { stream: true });
             bufferRef.current += chunk;
@@ -178,27 +184,27 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
         reset()
 
         const latestScene = advInfo.history[advInfo.history.length - 1]
-       
-        
+
+
         setStory(latestScene.text)
         setOptions(latestScene.options)
-     
+
     }
 
-         const  getAdventuresIds =  async () => {
-            const response = await httpClient.get<AdventuresList>("adventure/adventures")
-            const ids = response.data.adventuresIds
-            console.log(ids);
-            setIdList(ids)
+    const getAdventuresIds = async () => {
+        const response = await httpClient.get<AdventuresList>("adventure/adventures")
+        const ids = response.data.adventuresIds
+        console.log(ids);
+        setIdList(ids)
 
 
-            if(ids.length > 0){
-                setAdventureId(ids[0])
-            }
+        if (ids.length > 0) {
+            setAdventureId(ids[0])
         }
+    }
 
     return (
-        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset, adventureId, setAdventureId, getAdventureInfo, idList,getAdventuresIds, adventureInfo }}>
+        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset, adventureId, setAdventureId, getAdventureInfo, idList, getAdventuresIds, adventureInfo }}>
             {children}
         </AdventureContext.Provider>
     )
