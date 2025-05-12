@@ -1,14 +1,15 @@
 import { create } from 'zustand'
-import { AdventureInfoResponse } from '../context/AdventureContext'
 
-type AdventureCoreType = {
-    currentAdventureId: string
-    adventureInfo: AdventureInfoResponse
+type adventuresListType = {
+    adventureId: string
+    adventureName: string
+}[]
+
+type useAdventureListsStoreType = {
+    adventuresList: adventuresListType
 }
 
-const useAdventureCoreStore = create((set) => ({
-    currentAdventureId: null,
-    currentAdventureInfo: null,
-    setCurrentAdventureId: (id: string) => set({ currentAdventureId: id }),
-    setAdventureInfo: (adventureInfo: AdventureInfoResponse) => ({ currentAdventureInfo: adventureInfo })
+export const useAdventureListsStore = create<useAdventureListsStoreType>((set) => ({
+    adventuresList: [],
+    setAdventuresList: (list: adventuresListType) => set({ adventuresList: list })
 }))
