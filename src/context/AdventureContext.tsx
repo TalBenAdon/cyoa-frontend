@@ -21,7 +21,7 @@ type History = {
     scene: number
 }[]
 
-type AdventureInfoResponse = {
+export type AdventureInfoResponse = {
     id: string;
     type: string;
     sceneNumber: number;
