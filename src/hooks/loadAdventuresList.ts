@@ -26,4 +26,5 @@ export function useLoadAdventuresList() {
 
     }, [setAdventuresList])
 
+    return { loading, error }
 }
