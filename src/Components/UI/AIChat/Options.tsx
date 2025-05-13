@@ -15,7 +15,7 @@ export default function Options() {
 
 
     return (
-        <ul className="flex bg-white shrink-0 flex-col rounded-2xl h-52 mt-6 lg:mx-52 ">
+        <ul className="flex shrink-0 flex-col rounded-2xl h-52 mt-6 lg:mx-52 ">
             {options.map((option, i) => {
 
                 return <li className="flex grow" key={i}><Option handleClick={handleClick} text={option} /></li>

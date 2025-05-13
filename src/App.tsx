@@ -4,7 +4,7 @@ import { Outlet } from "react-router"
 function App() {
 
   return (
-    <main className="flex h-screen bg-[#ddb4ab] flex-row p-6 ">
+    <main className="flex h-screen bg-[#ddb4ab] p-6 ">
       <Outlet />
     </main>
   )

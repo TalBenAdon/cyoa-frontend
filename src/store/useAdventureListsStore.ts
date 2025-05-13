@@ -1,9 +1,11 @@
 import { create } from 'zustand'
 
-type adventuresListType = {
+type adventuresListItem = {
     adventureId: string
     adventureName: string
-}[]
+}
+
+export type adventuresListType = adventuresListItem[]
 
 type useAdventureListsStoreType = {
     adventuresList: adventuresListType
