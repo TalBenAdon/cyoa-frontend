@@ -7,6 +7,7 @@ type adventuresListType = {
 
 type useAdventureListsStoreType = {
     adventuresList: adventuresListType
+    setAdventuresList: (list: adventuresListType) => void
 }
 
 export const useAdventureListsStore = create<useAdventureListsStoreType>((set) => ({

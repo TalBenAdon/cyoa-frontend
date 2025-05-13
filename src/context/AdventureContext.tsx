@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useRef, useState } from "react";
-import httpClient from "../api/httpClient";
+import httpClient from "../api/axios/httpClient";
 
 
 type AdventureContextType = {
@@ -11,7 +11,6 @@ type AdventureContextType = {
     streamAIResponse: (url: string, payload: any) => Promise<void>;
     reset: () => void;
     idList: string[]
-    getAdventuresIds: () => void;
     adventureInfo: AdventureInfoResponse | null
 }
 
@@ -195,22 +194,22 @@ export const AdventureProvider = ({ children }: { children: ReactNode }) => {
 
     }
 
-    const getAdventuresIds = async () => {
-        const response = await httpClient.get<AdventuresList>("adventure/adventures")
-        const ids = response.data.adventuresIds
-        console.log("getting adventuresIds");
+    // const getAdventuresIds = async () => {
+    //     const response = await httpClient.get<AdventuresList>("adventure/adventures")
+    //     const ids = response.data.adventuresIds
+    //     console.log("getting adventuresIds");
 
-        console.log(ids);
-        setIdList(ids)
+    //     console.log(ids);
+    //     setIdList(ids)
 
 
-        if (ids.length > 0) {
-            setAdventureId(ids[0])
-        }
-    }
+    //     if (ids.length > 0) {
+    //         setAdventureId(ids[0])
+    //     }
+    // }
 
     return (
-        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset, adventureId, setAdventureId, getAdventureInfo, idList, getAdventuresIds, adventureInfo }}>
+        <AdventureContext.Provider value={{ story, options, streamAIResponse, reset, adventureId, setAdventureId, getAdventureInfo, idList, adventureInfo }}>
             {children}
         </AdventureContext.Provider>
     )
