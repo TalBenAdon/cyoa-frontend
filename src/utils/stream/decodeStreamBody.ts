@@ -4,7 +4,6 @@ export async function* decodeStreamBody(response: Response): AsyncGenerator<stri
 
     if (!reader) return;
 
-
     while (true) {
         const { value, done } = await reader.read();
         if (done) break;
