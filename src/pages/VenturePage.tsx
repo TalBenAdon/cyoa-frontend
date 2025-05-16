@@ -1,8 +1,9 @@
 import { useAdventure } from "../context/AdventureContext";
 import AiText from "../Components/UI/AIChat/AiText";
 import AdventuresSideBar from "../Components/UI/AdventuresSideBar/AdventuresSideBar";
-import { useLoadAdventuresList } from "../hooks/loadAdventuresList";
+import { useLoadAdventuresList } from "../hooks/useLoadAdventuresList";
 import { useAdventureListsStore } from "../store/useAdventureListsStore";
+import { useAIstreamer } from "../hooks/useAIstreamer";
 
 
 
@@ -10,21 +11,13 @@ import { useAdventureListsStore } from "../store/useAdventureListsStore";
 
 
 export default function VenturePage() {
-    const { options, streamAIResponse, reset, adventureId, getAdventureInfo } = useAdventure()
-
-
+    console.log("VenturePage rerendered")
     const { loading, error } = useLoadAdventuresList()
     const adventuresList = useAdventureListsStore((state) => state.adventuresList)
+    const { getStream } = useAIstreamer()
 
     const onStartButtonClick = async () => {
-        reset()
-        await streamAIResponse("http://localhost:8000/adventure/start", { type: "fantasy" },)
-
-        if (adventureId) {
-            getAdventureInfo(adventureId)
-        }
-
-
+        getStream({ url: "/adventure/start", payload: { type: "fantasy" } })
     }
 
 
@@ -34,12 +27,15 @@ export default function VenturePage() {
             {loading && <p>loading...</p>}
             {error && <p>error...</p>}
             <div className=" flex grow h-full flex-row">
-                <AdventuresSideBar adventuresList={adventuresList} />
+                {
+
+                    <AdventuresSideBar adventuresList={adventuresList} />
+                }
                 < AiText />
 
 
             </div>
-            {options.length == 0 ? <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button> : ""}
+            <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button>
         </div>
 
 

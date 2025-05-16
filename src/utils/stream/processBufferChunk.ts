@@ -1,12 +1,12 @@
-type proccessChunkParams = {
-    chunk: string,
+
+
+
+
+export function processBufferChunks(chunk: string,
     buffer: string,
     currentTag: string,
     appendingFn: (text: string, tag: string) => void
-}
-
-export function processBufferChunks({ chunk, buffer, currentTag, appendingFn }: proccessChunkParams
-): { newBuffer: string, newTag: string } {
+): { newBuffer: string, tag: string } {
 
     buffer += chunk
     console.log({ "currentTag": currentTag });
@@ -33,18 +33,19 @@ export function processBufferChunks({ chunk, buffer, currentTag, appendingFn }: 
                 buffer = buffer.slice(0, tagStart) + buffer.slice(tagEnd + 1)
                 const toAppend = buffer
                 appendingFn(toAppend, newTag)
-                return { newBuffer: "", newTag }
+                return { newBuffer: "", tag: newTag }
+
             } else {
-                return { newBuffer: buffer.slice(tagEnd + 1), newTag: currentTag }
+                return { newBuffer: buffer.slice(tagEnd + 1), tag: currentTag }
             }
         } else {
             const trailText = buffer.slice(0, tagEnd)
             appendingFn(trailText, currentTag)
-            return { newBuffer: buffer.slice(tagStart), newTag: currentTag }
+            return { newBuffer: buffer.slice(tagStart), tag: currentTag }
         }
     } else {
         appendingFn(buffer, currentTag)
-        return { newBuffer: "", newTag: currentTag }
+        return { newBuffer: "", tag: currentTag }
     }
 
 }

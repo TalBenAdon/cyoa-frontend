@@ -19,6 +19,7 @@ export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
     }),
 
     streamStoryText: (textBuffer: string) => set((state) => {
+
         return { storyText: state.storyText + textBuffer }
     }),
 
@@ -28,6 +29,7 @@ export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
             updated.push("")
         }
         updated[index] = (updated[index] || "") + toAppend
+
         return { optionsList: updated };
     })
 }))

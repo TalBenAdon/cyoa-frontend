@@ -2,6 +2,7 @@ import { useAdventureUIStore } from "../../store/useAdventureUIStore"
 
 export const appendStreamToUI = (toAppend: string, currentTag: string) => {
     const { streamStoryText, streamOptions } = useAdventureUIStore.getState()
+    console.log(toAppend, currentTag);
 
     switch (currentTag) {
         case "text":

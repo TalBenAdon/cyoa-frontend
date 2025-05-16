@@ -12,6 +12,7 @@ export function useLoadAdventuresList() {
         const load = async () => {
             try {
                 const data = await fetchAdventuresList()
+                console.log({ "fetched data>>": data.adventures });
                 setAdventuresList(data.adventures)
 
             } catch (error) {

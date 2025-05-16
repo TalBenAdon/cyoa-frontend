@@ -1,5 +1,5 @@
 
-export type OptionProps = { text: string, handleClick: (choice: string) => void }
+export type OptionProps = { text: string, handleClick: (choiceText: string) => void }
 
 
 export default function Option({ text, handleClick }: OptionProps) {
