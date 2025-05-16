@@ -4,7 +4,8 @@ type useAdventureUIStoreType = {
     storyText: string
     optionsList: string[]
     reset: () => void
-    setStoryText: (text: string) => void
+    streamStoryText: (textBuffer: string) => void
+    streamOptions: (index: number, toAppend: string) => void
 }
 
 export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
@@ -17,7 +18,18 @@ export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
         optionsList: []
     }),
 
+    streamStoryText: (textBuffer: string) => set((state) => {
 
-    setStoryText: (text: string) => set({ storyText: text }),
-    setOptions: (options: string[]) => set({ optionsList: options })
+        return { storyText: state.storyText + textBuffer }
+    }),
+
+    streamOptions: (index: number, toAppend: string) => set((state) => {
+        const updated = [...state.optionsList]
+        while (updated.length <= index) {
+            updated.push("")
+        }
+        updated[index] = (updated[index] || "") + toAppend
+
+        return { optionsList: updated };
+    })
 }))

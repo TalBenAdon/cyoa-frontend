@@ -14,5 +14,8 @@ type useAdventureListsStoreType = {
 
 export const useAdventureListsStore = create<useAdventureListsStoreType>((set) => ({
     adventuresList: [],
-    setAdventuresList: (list: adventuresListType) => set({ adventuresList: list })
+    setAdventuresList: (list: adventuresListType) => {
+        console.log(">>> Setting adventuresList to:", list)
+        set({ adventuresList: list })
+    }
 }))

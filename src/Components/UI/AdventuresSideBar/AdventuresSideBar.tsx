@@ -5,6 +5,7 @@ type adventuresSideBarProps = {
 }
 
 export default function AdventuresSideBar({ adventuresList }: adventuresSideBarProps) {
+    console.log({ "adventuresSideBar": adventuresList });
 
 
     return (

@@ -1,18 +1,19 @@
-import { useAdventure } from "../../../context/AdventureContext";
+
+import { useAIstreamer } from "../../../hooks/useAIstreamer";
+import { useAdventureCoreStore } from "../../../store/useAdventureCoreStore";
+import { useAdventureUIStore } from "../../../store/useAdventureUIStore";
 import Option from "./Option";
 
 
 export default function Options() {
-    const { options, streamAIResponse, adventureId, getAdventureInfo } = useAdventure()
-    const handleClick = async (choice: string) => {
-        await streamAIResponse(`http://localhost:8000/adventure/choice/${adventureId}`, { choice })
 
-        if (adventureId) {
+    const options = useAdventureUIStore(state => state.optionsList)
+    const adventureId = useAdventureCoreStore(state => state.currentAdventureId)
+    const { getStream } = useAIstreamer()
 
-            getAdventureInfo(adventureId)
-        }
+    const handleClick = (choiceText: string) => {
+        getStream({ url: `/adventure/choice/${adventureId}`, payload: { choice: choiceText } })
     }
-
 
     return (
         <ul className="flex shrink-0 flex-col rounded-2xl h-52 mt-6 lg:mx-52 ">
