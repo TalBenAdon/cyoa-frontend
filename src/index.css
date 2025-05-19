@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Inter', sans-serif;
+}
+
 @theme {
     --color-dark-main: oklch(0.1673 0.009 239.88);
     --color-green-grad: oklch(0.4814 0.0477 172.31);
@@ -17,7 +21,6 @@
 
 
     }
-
 
 
     .side-gradient-bg {
@@ -38,6 +41,8 @@
         /* background-color: rgba(0, 0, 0, 0.9); */
         background-blend-mode: overlay;
     }
+
+
 
 
 }
