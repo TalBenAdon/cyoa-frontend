@@ -23,7 +23,8 @@ export default function VenturePage() {
 
 
     return (
-        <>
+
+        <div className="flex grow gap-4">
 
 
             <AdventuresSideBar adventuresList={adventuresList} />
@@ -34,7 +35,8 @@ export default function VenturePage() {
 
             {/* <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button> */}
 
-        </>
+        </div>
+
 
     )
 }
