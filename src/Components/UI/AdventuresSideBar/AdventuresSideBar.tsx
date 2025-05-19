@@ -9,7 +9,7 @@ export default function AdventuresSideBar({ adventuresList }: adventuresSideBarP
 
 
     return (
-        <div className="flex h-full flex-col px-3 py-4 bg-white min-w-48 mr-6 rounded-2xl items-center shrink-0">
+        <div className=" flex h-full flex-col px-3 py-4 min-w-48 mr-6 rounded-2xl items-center shrink-0 side-gradient-bg">
             <ul className="flex flex-col items-center gap-6">
                 {adventuresList.map((adventure) => {
                     return (

@@ -12,7 +12,7 @@ import { useAIstreamer } from "../hooks/useAIstreamer";
 
 export default function VenturePage() {
     console.log("VenturePage rerendered")
-    const { loading, error } = useLoadAdventuresList()
+    // const { loading, error } = useLoadAdventuresList()
     const adventuresList = useAdventureListsStore((state) => state.adventuresList)
     const { getStream } = useAIstreamer()
 
@@ -23,21 +23,18 @@ export default function VenturePage() {
 
 
     return (
-        <div className="flex flex-col grow">
-            {loading && <p>loading...</p>}
-            {error && <p>error...</p>}
-            <div className=" flex grow h-full flex-row">
-                {
-
-                    <AdventuresSideBar adventuresList={adventuresList} />
-                }
-                < AiText />
+        <>
 
 
-            </div>
-            <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button>
-        </div>
+            <AdventuresSideBar adventuresList={adventuresList} />
 
+            < AiText />
+
+
+
+            {/* <button className="cursor-pointer" onClick={onStartButtonClick}>Click to start</button> */}
+
+        </>
 
     )
 }
