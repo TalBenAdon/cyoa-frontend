@@ -6,6 +6,10 @@
 
 body {
     font-family: 'Inter', sans-serif;
+    /* font-size: medium; */
+    font-size: 18px;
+    font-weight: 300;
+    /* line-height: 18px; */
 
 }
 
@@ -44,7 +48,19 @@ body {
         background-blend-mode: overlay;
     }
 
+    .option-gradient-bg {
+        background-image: linear-gradient(to right,
+                oklch(0.8603 0.1926 155.25 / 30%) -50%,
+                oklch(0.2315 0.0181 195.97) 80%);
+    }
 
+    .background-mask {
+        -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+    }
 
-
+    .background-mask::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 }

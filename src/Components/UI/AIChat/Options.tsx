@@ -22,10 +22,10 @@ export default function Options() {
     }
 
     return (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 mt-4">
             {placeHolderOptions.map((option, i) => {
 
-                return <li className="flex grow" key={i}><Option handleClick={handleClick} text={option} /></li>
+                return <li className="flex grow rounded-xl" key={i}><Option handleClick={handleClick} text={option} /></li>
             })}
             {/* <li className="flex grow">
                 <Option handleClick={handleClick} text="Custom" />
