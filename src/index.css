@@ -44,7 +44,9 @@ body {
         background-blend-mode: overlay;
     }
 
-
-
-
+    .option-gradient-bg {
+        background-image: linear-gradient(to right,
+                oklch(0.8603 0.1926 155.25 / 30%) -60%,
+                oklch(0.6301 0 0 / 0%) 80%);
+    }
 }
