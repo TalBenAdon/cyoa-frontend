@@ -4,6 +4,7 @@ import AdventuresSideBar from "../Components/UI/AdventuresSideBar/AdventuresSide
 import { useLoadAdventuresList } from "../hooks/useLoadAdventuresList";
 import { useAdventureListsStore } from "../store/useAdventureListsStore";
 import { useAIstreamer } from "../hooks/useAIstreamer";
+import DropDownMenu from "../Components/UI/DropDownMenu/DropDownMenu";
 
 
 
@@ -32,15 +33,12 @@ export default function VenturePage() {
             <div className="h-full grow gradient-border p-[1px] rounded-2xl">
                 <div className="h-full grow bg-dark-main rounded-2xl">
                     <div className="flex flex-col items-center h-full text-gradient-bg grow rounded-2xl p-9">
-
                         <div className="lg:max-w-5xl flex flex-col items-center h-full">
 
                             <div className="overflow-y-auto h-full background-mask">
                                 < AiText />
                             </div>
-                            <div className="w-full">
-                                text
-                            </div>
+                            <DropDownMenu />
 
                         </div>
 
