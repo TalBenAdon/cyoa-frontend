@@ -17,6 +17,11 @@ body {
     --color-dark-main: oklch(0.1673 0.009 239.88);
     --color-green-grad: oklch(0.4814 0.0477 172.31);
     --color-dark-grad: oklch(0.2315 0.0181 195.97);
+    --color-button-base: oklch(1 0 0 / 7%);
+    --color-button-text-base: oklch(1 0 0 / 50%);
+    --color-button-hover: oklch(1 0 0 / 15%);
+    --color-button-menu: oklch(1 0 0 / 10%);
+    --color-button-active: oklch(0.4773 0.0919 167.21);
 }
 
 @layer utilities {
@@ -63,4 +68,6 @@ body {
         width: 0;
         height: 0;
     }
+
+
 }

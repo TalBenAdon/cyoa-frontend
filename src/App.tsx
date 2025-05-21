@@ -1,12 +1,9 @@
-import { Outlet } from "react-router"
+import Layout from "./pages/Layout"
 
 
 function App() {
-  //TODO: change background color, and should probably be flex row
   return (
-    <main className="flex h-screen bg-dark-main text-white p-4">
-      <Outlet />
-    </main>
+    <Layout />
   )
 }
 

@@ -1,9 +1,9 @@
-import { useAdventureUIStore } from "../../../store/useAdventureUIStore"
+// import { useAdventureUIStore } from "../../../store/useAdventureUIStore"
 import Options from "./Options"
 
 
 export default function AiText() {
-    const storyText = useAdventureUIStore(state => state.storyText)
+    // const storyText = useAdventureUIStore(state => state.storyText)
     const myText = `You, Elara, a young wizard with a knack for elemental magic but still much to learn, find yourself standing at the edge of the Whispering Woods. For weeks, tales have reached your village of strange occurrences within: livestock disappearing, eerie lights seen dancing between the ancient trees, and unsettling whispers that seem to carry on the wind, promising power or madness in equal measure. The village elders, wary and fearful, have forbidden anyone from entering.
 
 But you're not just anyone. Your mentor, the old and wise Master Alatar, before he disappeared under mysterious circumstances a year ago, often spoke of the Woods as a place of potent, raw magic – a place where a keen student could learn much, if they were brave enough to face its dangers. He also left you with a cryptic warning: "Not all whispers speak the truth, and not all power is worth the price."

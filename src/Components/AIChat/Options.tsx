@@ -1,7 +1,7 @@
 
-import { useAIstreamer } from "../../../hooks/useAIstreamer";
-import { useAdventureCoreStore } from "../../../store/useAdventureCoreStore";
-import { useAdventureUIStore } from "../../../store/useAdventureUIStore";
+import { useAIstreamer } from "../../hooks/useAIstreamer";
+import { useAdventureCoreStore } from "../../store/useAdventureCoreStore";
+// import { useAdventureUIStore } from "../../../store/useAdventureUIStore";
 import Option from "./Option";
 
 const placeHolderOptions = [
