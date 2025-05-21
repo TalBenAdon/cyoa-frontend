@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import AdventuresSideBar from "../Components/UI/AdventuresSideBar/AdventuresSideBar";
+import SideBar from "../Components/SideBar/SideBar";
 
 export default function Layout() {
     return (
@@ -7,7 +7,7 @@ export default function Layout() {
 
             <div className="flex grow gap-4">
 
-                <AdventuresSideBar />
+                <SideBar />
 
                 <div className="h-full grow gradient-border p-[1px] rounded-2xl">
                     <div className="h-full grow bg-dark-main rounded-2xl">
