@@ -12,12 +12,6 @@ export type Option<T = string> = {
     label: string
 }
 
-
-// type DropDownMenuProps = {
-//     customAction: string,
-//     revision: string
-// }
-
 export default function DropDownMenu() {
 
     const [isActive, setIsActive] = useState<boolean>(false)
