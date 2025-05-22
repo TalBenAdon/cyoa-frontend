@@ -1,9 +1,12 @@
 // import { useAdventure } from "../context/AdventureContext";
 import AiText from "../Components/AIChat/AiText";
+import CustomChatBox from "../Components/CustomChatBox/CustomChatBox";
 // import AdventuresSideBar from "../Components/SideBar/SideBar";
 // import { useLoadAdventuresList } from "../hooks/useLoadAdventuresList";
 // import { useAdventureListsStore } from "../store/useAdventureListsStore";
 // import { useAIstreamer } from "../hooks/useAIstreamer";
+
+
 
 
 
@@ -29,6 +32,7 @@ export default function VenturePage() {
             <div className="overflow-y-auto h-full background-mask">
                 < AiText />
             </div>
+            <CustomChatBox/>
         </main>
 
 
