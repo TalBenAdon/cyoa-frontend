@@ -10,7 +10,7 @@ type TextAreaProps = ComponentPropsWithoutRef<'textarea'> & {
 
 export default function TextArea({ value, placeHolder, onChangeText, onSubmit }: TextAreaProps) {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === "Enter" && e.shiftKey) {
+        if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault()
             onSubmit()
         }
