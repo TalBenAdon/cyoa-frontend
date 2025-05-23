@@ -15,7 +15,7 @@ const onSubmit = () => {
     
 }
     return(
-        <div className="w-full bg-button-base p-2 rounded-2xl">
+        <div className="flex flex-col gap-6 w-full bg-button-base p-2 rounded-2xl">
             <TextArea value={text} placeHolder="Plan your next action" onChangeText={onChange} onSubmit={onSubmit} />
             <DropDownMenu/>
         </div>

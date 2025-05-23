@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ArrowIcon from '../../assets/icons/lsicon_up-outline.svg?react'
 import DropDownMenuList from './DropDownMenuList'
 
@@ -16,6 +16,7 @@ export default function DropDownMenu() {
 
     const [isActive, setIsActive] = useState<boolean>(false)
     const [isSelected, setIsSelected] = useState(options[0])
+    const menuRef = useRef<HTMLDivElement>(null)
 
     const handleToggle = () => setIsActive(!isActive)
 
@@ -26,9 +27,26 @@ export default function DropDownMenu() {
 
         }
     }
+    console.log(isActive);
+    
+    
+
+    useEffect(()=>{
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsActive(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () =>{
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    },[])
 
     return (
-        <div className='relative inline-box text-base'>
+        <div className='relative inline-box text-base' ref={menuRef}>
             <button className="w-[176px] flex items-center gap-2 bg-button-base cursor-pointer px-4 py-1 rounded-xl" onClick={handleToggle}>
                 <p className="text-start whitespace-nowrap text-button-text-base grow">
                     {isSelected.label}
