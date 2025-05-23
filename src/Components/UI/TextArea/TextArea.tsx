@@ -35,12 +35,12 @@ export default function TextArea({ value, placeHolder, onChangeText, onSubmit }:
     
 
     return (
-        <div className="w-full relative">
+        <div className="w-full relative flex">
 
         <div ref={shadowRef} className="absolute invisible whitespace-pre-wrap break-words w-full box-border leading-normal text-start">
             </div>
 
-        <textarea className="w-full p-0 resize-none focus:outline-none max-h-40 overflow-y-auto text-start leading-normal box-border"
+        <textarea className="w-full p-0 resize-none focus:outline-none max-h-40 overflow-y-auto text-start leading-normal box-border placeholder-placeholder-color"
             value={value}
             ref={textAreaRef}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChangeText(e.target.value)}
