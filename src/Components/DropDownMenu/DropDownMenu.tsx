@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ArrowIcon from '../../../assets/icons/lsicon_up-outline.svg?react'
+import ArrowIcon from '../../assets/icons/lsicon_up-outline.svg?react'
 import DropDownMenuList from './DropDownMenuList'
 
 const options = [
