@@ -23,6 +23,8 @@ body {
     --color-button-menu: oklch(1 0 0 / 10%);
     --color-button-active: oklch(0.4773 0.0919 167.21);
     --color-placeholder-color: oklch(1 0 0 / 30%);
+    --color-enter-button-base: oklch(1 0 0 / 14%);
+    --color-enter-button-hover: oklch(1 0 0 / 24%);
 }
 
 @layer utilities {

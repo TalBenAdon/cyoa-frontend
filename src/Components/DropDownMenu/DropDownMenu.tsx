@@ -18,9 +18,14 @@ export default function DropDownMenu() {
     const [isSelected, setIsSelected] = useState(options[0])
     const menuRef = useRef<HTMLDivElement>(null)
 
-    const handleToggle = () => setIsActive(!isActive)
+    const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+        setIsActive(!isActive)
 
-    const onSelect = (id: string) => {
+    }
+
+    const onSelect = (id: string, e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
         const chosen = options.find((option) => option.id === id)
         if (chosen) {
             setIsSelected(chosen)
@@ -47,7 +52,7 @@ export default function DropDownMenu() {
 
     return (
         <div className='relative inline-box text-base' ref={menuRef}>
-            <button className="w-[176px] flex items-center gap-2 bg-button-base cursor-pointer px-4 py-1 rounded-xl" onClick={handleToggle}>
+            <button className="w-[176px] h-full flex items-center gap-2 bg-button-base cursor-pointer px-4 py-1 rounded-xl" onClick={handleToggle}>
                 <p className="text-start whitespace-nowrap text-button-text-base grow">
                     {isSelected.label}
                 </p>
