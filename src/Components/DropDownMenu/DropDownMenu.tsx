@@ -28,10 +28,10 @@ export default function DropDownMenu() {
         }
     }
     console.log(isActive);
-    
-    
 
-    useEffect(()=>{
+
+
+    useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setIsActive(false);
@@ -40,10 +40,10 @@ export default function DropDownMenu() {
 
         document.addEventListener("mousedown", handleClickOutside);
 
-        return () =>{
+        return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    },[])
+    }, [])
 
     return (
         <div className='relative inline-box text-base' ref={menuRef}>
@@ -51,7 +51,7 @@ export default function DropDownMenu() {
                 <p className="text-start whitespace-nowrap text-button-text-base grow">
                     {isSelected.label}
                 </p>
-                <ArrowIcon className={`${isActive ? "-rotate-180" : ""} duration-100 ease-linear shrink-0`} />
+                <ArrowIcon className={`${isActive ? "-rotate-180" : ""} shrink-0`} />
             </button>
 
             {isActive && (
