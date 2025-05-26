@@ -3,7 +3,7 @@ import { type Option } from "./DropDownMenu"
 
 type DropDownMenuListProps = {
     options: Option[],
-    onSelect: (id: string) => void
+    onSelect: (id: string, e: React.MouseEvent<HTMLButtonElement>) => void
     selectedId: string
 }
 
@@ -15,7 +15,7 @@ export default function DropDownMenuList({ options, onSelect, selectedId }: Drop
             {options.map(option => (
                 <button key={option.id}
                     className={` ${option.id === selectedId ? 'bg-button-active' : 'bg-button-menu hover:bg-button-hover'} rounded-lg py-1`}
-                    onClick={() => onSelect(option.id)}>
+                    onClick={(e) => onSelect(option.id, e)}>
 
                     <p>
                         {option.label}
