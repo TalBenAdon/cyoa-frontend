@@ -2,8 +2,7 @@ import { type ItemType } from "../../../utils/toolIconMap"
 
 type ToolItemSlotProps = {
     Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-    itemName: string;
-    isAmpty: boolean;
+    itemName: string | null;
 }
 
 export default function ToolItemSlot() {
