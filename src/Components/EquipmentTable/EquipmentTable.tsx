@@ -1,6 +1,6 @@
 import ToolTitleButton from '../ToolTitleButton/ToolTitleButton'
 import { useState } from 'react'
-import { toolIconMap } from '../../utils/ToolIconsMap'
+import { toolIconMap } from '../../utils/toolIconMap'
 export default function EquipmentTable() {
     const [isToggled, setIsToggled] = useState<boolean>(false)
 

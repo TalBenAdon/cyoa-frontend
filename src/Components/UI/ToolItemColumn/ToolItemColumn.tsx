@@ -1,4 +1,4 @@
-import { type ItemType } from "../../../utils/ToolIconsMap"
+import { type ItemType } from "../../../utils/toolIconMap"
 
 type ToolItemSlotProps = {
     Icon: React.FC<React.SVGProps<SVGSVGElement>>;

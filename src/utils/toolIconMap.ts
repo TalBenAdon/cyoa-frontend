@@ -11,7 +11,14 @@ import React from 'react'
 export type Item = {
     name: string,
     description: string,
+    type: ItemType
 }
+
+export type EquipmentSlot = {
+    type: ItemType;
+    icon: React.FC<React.SVGProps<SVGSVGElement>>;
+    item: Item | null;
+};
 
 export type ItemType = 'hat' | 'shirt' | 'pants' | 'shoes' | 'weapon' | 'gloves' | 'shield' | 'accessory'
 
