@@ -4,14 +4,10 @@ import { toolIconMap } from '../../utils/ToolIconsMap'
 export default function EquipmentTable() {
     const [isToggled, setIsToggled] = useState<boolean>(false)
 
-    const handleTitleClick = () => {
-        console.log(isToggled);
-
-        setIsToggled(!isToggled)
-    }
+    const handleTitleClick = () => setIsToggled(!isToggled)
 
     return (
-        <div>
+        <div className='flex flex-col w-full'>
             <ToolTitleButton title={"Equipment"} isToggled={isToggled} onClick={handleTitleClick} />
 
         </div>

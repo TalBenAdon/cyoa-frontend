@@ -6,9 +6,16 @@ import Weapon from '../assets/icons/StateWeapon.svg?react'
 import Gloves from '../assets/icons/StateGloves.svg?react'
 import Shield from '../assets/icons/StateShield.svg?react'
 import Accessory from '../assets/icons/StateAccessory.svg?react'
+import React from 'react'
 
+export type Item = {
+    name: string,
+    description: string,
+}
 
-export const toolIconMap = {
+export type ItemType = 'hat' | 'shirt' | 'pants' | 'shoes' | 'weapon' | 'gloves' | 'shield' | 'accessory'
+
+export const toolIconMap: Record<ItemType, React.FC<React.SVGProps<SVGSVGElement>>> = {
     hat: Hat,
     shirt: Shirt,
     pants: Pants,
