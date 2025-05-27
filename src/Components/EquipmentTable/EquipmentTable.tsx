@@ -1,10 +1,11 @@
-import DropTriangle from '../../assets/icons/dropDownTriangle.svg?react'
-import ToolButton from '../UI/ToolButton/ToolButton'
+import ToolTitleButton from '../ToolTitleButton/ToolTitleButton'
+import { toolIconMap } from '../../utils/ToolIconsMap'
 export default function EquipmentTable() {
 
     return (
         <div>
-            <ToolButton title={"Equipment"} />
+            <ToolTitleButton title={"Equipment"} />
+
         </div>
     )
 }
