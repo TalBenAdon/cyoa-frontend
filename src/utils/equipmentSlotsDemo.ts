@@ -2,7 +2,7 @@ import { EquipmentSlot, ItemType, toolIconMap } from "./toolIconMap";
 
 
 
-export const initialEquipmentSlots: Record<ItemType, EquipmentSlot> = {
+export const EquipmentSlotsDemo: Record<ItemType, EquipmentSlot> = {
     hat: { type: 'hat', icon: toolIconMap.hat, item: null },
     shirt: { type: 'shirt', icon: toolIconMap.shirt, item: null },
     pants: { type: 'pants', icon: toolIconMap.pants, item: null },
