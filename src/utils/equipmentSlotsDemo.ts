@@ -1,14 +1,19 @@
-import { EquipmentSlot, ItemType, toolIconMap } from "./toolIconMap";
 
+export type Item = {
+    name: string,
+    description: string,
+    type: string
+}
 
+export type StandardTypes = 'hat' | 'shirt' | 'pants' | 'shoes' | 'weapon' | 'gloves' | 'shield' | 'accessory'
 
-export const equipmentSlotsDemo: Record<ItemType, EquipmentSlot> = {
-    hat: { type: 'hat', icon: toolIconMap.hat, item: null },
-    shirt: { type: 'shirt', icon: toolIconMap.shirt, item: null },
-    pants: { type: 'pants', icon: toolIconMap.pants, item: null },
-    shoes: { type: 'shoes', icon: toolIconMap.shoes, item: null },
-    weapon: { type: 'hat', icon: toolIconMap.hat, item: null },
-    gloves: { type: 'gloves', icon: toolIconMap.gloves, item: null },
-    shield: { type: 'shield', icon: toolIconMap.shield, item: null },
-    accessory: { type: 'accessory', icon: toolIconMap.accessory, item: null },
+export const equipmentSlotsDemo: Record<StandardTypes | string, Item | null> = {
+    hat: null,
+    shirt: null,
+    pants: null,
+    shoes: null,
+    weapon: null,
+    gloves: null,
+    shield: null,
+    accessory: null,
 }
