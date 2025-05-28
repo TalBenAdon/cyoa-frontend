@@ -34,6 +34,7 @@ body {
     --color-placeholder-color: oklch(1 0 0 / 30%);
     --color-enter-button-base: oklch(1 0 0 / 14%);
     --color-enter-button-hover: oklch(1 0 0 / 24%);
+    --color-add-remove-hover: oklch(0.7826 0 0);
 }
 
 @layer utilities {
