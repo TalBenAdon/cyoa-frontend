@@ -17,7 +17,7 @@ export default function ToolItemSlot({ itemName }: ToolItemSlotProps) {
                 </p>
             </div>
             <button>
-                <RemoveIcon className="lg:w-[12px] lg:h-[12px] hover:text-add-remove-hover" />
+                <RemoveIcon className="lg:w-[12px] lg:h-[12px] hover:bg-add-remove-hover" />
             </button>
         </div>
     )
