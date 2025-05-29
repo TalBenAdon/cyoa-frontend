@@ -12,7 +12,7 @@ export default function ToolItemSlot({ itemName, Icon }: ToolItemSlotProps) {
 
 
     return (
-        <div className="flex items-center text-[12px] lg:text-sm justify-between py-2">
+        <div className="flex items-center text-[12px] lg:text-sm justify-between py-2 border-white/50">
             <div className="flex items-center">
                 <Icon className="lg:w-[14px] lg:h-[14px]" />
                 <p className={`${isEmpty ? 'text-text-base' : ''}`}>

@@ -15,17 +15,17 @@ export default function EquipmentTable() {
     return (
         <div className='flex flex-col w-full'>
             <ToolTitleButton title={"Equipment"} isToggled={isToggled} onClick={handleTitleClick} />
-            {isToggled && <div className='flex flex-col p-1 divide-y divide-gray-300'>
+            {isToggled && (<div className='flex flex-col p-1 divide-y divide-white'>
                 {
-                    Object.entries(equipmentSlotsDemo).map(([type, item]) => {
+                    Object.entries(equipmentSlotsDemo).map(([type, item], index) => {
                         const Icon = toolIconMap[type] ?? fallBackIcon
                         return (
-                            <ToolItemSlot Icon={Icon} itemName={item?.name} />
+                            <ToolItemSlot key={index} Icon={Icon} itemName={item?.name} />
                         )
                     })
                 }
 
-            </div>}
+            </div>)}
         </div>
     )
 }
