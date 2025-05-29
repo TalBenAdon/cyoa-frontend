@@ -14,7 +14,7 @@ export default function EquipmentTable() {
 
     return (
         <div className='flex flex-col w-full'>
-            <ToolTitleButton title={"Equipment"} isToggled={isToggled} onClick={handleTitleClick} />
+            <ToolTitleButton title={"Equipment [E]"} isToggled={isToggled} onClick={handleTitleClick} />
             {isToggled && (<div className='flex flex-col p-1 divide-y divide-white'>
                 {
                     Object.entries(equipmentSlotsDemo).map(([type, item], index) => {
