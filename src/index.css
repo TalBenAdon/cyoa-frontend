@@ -4,12 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-size: 16px;
+}
+
+@media(min-width: 1440px) {
+    html {
+        font-size: 18px;
+    }
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    /* font-size: medium; */
-    font-size: 18px;
+
     font-weight: 300;
-    /* line-height: 18px; */
+
 
 }
 
@@ -18,13 +27,14 @@ body {
     --color-green-grad: oklch(0.4814 0.0477 172.31);
     --color-dark-grad: oklch(0.2315 0.0181 195.97);
     --color-button-base: oklch(1 0 0 / 7%);
-    --color-button-text-base: oklch(1 0 0 / 50%);
+    --color-text-base: oklch(1 0 0 / 50%);
     --color-button-hover: oklch(1 0 0 / 15%);
     --color-button-menu: oklch(1 0 0 / 10%);
     --color-button-active: oklch(0.4773 0.0919 167.21);
     --color-placeholder-color: oklch(1 0 0 / 30%);
     --color-enter-button-base: oklch(1 0 0 / 14%);
     --color-enter-button-hover: oklch(1 0 0 / 24%);
+    --color-add-remove-hover: oklch(0.7826 0 0);
 }
 
 @layer utilities {
@@ -70,6 +80,12 @@ body {
     .background-mask::-webkit-scrollbar {
         width: 0;
         height: 0;
+    }
+
+    .chat-box-gradient {
+        background: linear-gradient(white, white) padding-box, linear-gradient(to right, darkblue, darkorchild) border-box;
+        border-radius: 50rem;
+        border: 4px solid transparent;
     }
 
 
