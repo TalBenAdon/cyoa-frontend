@@ -19,9 +19,9 @@ export default function ToolItemSlot({ itemName, Icon }: ToolItemSlotProps) {
                     {isEmpty ? '[empty slot]' : itemName}
                 </p>
             </div>
-            <button>
+            {!isEmpty && (<button>
                 <RemoveIcon className="lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer" />
-            </button>
+            </button>)}
         </div>
     )
 }
