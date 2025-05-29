@@ -15,7 +15,7 @@ export default function EquipmentTable() {
     return (
         <div className='flex flex-col w-full'>
             <ToolTitleButton title={"Equipment"} isToggled={isToggled} onClick={handleTitleClick} />
-            <div className='p-1'>
+            <div className='flex flex-col gap-2 p-1'>
                 {
                     Object.entries(equipmentSlotsDemo).map(([type, item]) => {
                         const Icon = toolIconMap[type] ?? fallBackIcon
