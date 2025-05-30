@@ -7,13 +7,10 @@ type ToolTable = {
     menuTitle: string;
 }
 
-export default function InventoryTable({ subMenuOptions, menuTitle }: ToolTable) {
+export default function ToolTable({ subMenuOptions, menuTitle }: ToolTable) {
     const [isToggled, setIsToggled] = useState<boolean>(false)
 
-    // const subMenuOptions = ['Equipment', 'Use']
-
     const handleTitleClick = () => setIsToggled(!isToggled)
-
 
     return (
         <div className='flex flex-col w-full'>
