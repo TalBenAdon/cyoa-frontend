@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import ToolMenuSwitchButton from "../ToolMenuSwitchButton/ToolMenuSwitchButton"
 
 type ToolMenuProps = {
     options: string[]
+    selected: string | null
+    onSelect: (title: string) => void
 }
 
-export default function ToolMenu({ options }: ToolMenuProps) {
-    const [isToggled, setIsToggled] = useState<string>('')
+export default function ToolMenu({ options, selected, onSelect }: ToolMenuProps) {
 
-    const handleClick = (title: string) => setIsToggled(title)
+
 
 
 
@@ -18,7 +19,7 @@ export default function ToolMenu({ options }: ToolMenuProps) {
                 return (
                     <React.Fragment key={option}>
 
-                        <ToolMenuSwitchButton title={option} isToggled={isToggled} onClick={() => handleClick(option)} />
+                        <ToolMenuSwitchButton title={option} isToggled={selected} onClick={() => onSelect(option)} />
                         {index != options.length - 1 && <div>|</div>}
 
                     </React.Fragment>

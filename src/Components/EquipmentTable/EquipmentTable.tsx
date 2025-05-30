@@ -10,18 +10,26 @@ export default function EquipmentTable() {
 
     const handleTitleClick = () => setIsToggled(!isToggled)
 
+    const onActionClick = (id: string) => {
 
+        console.log('removingItem');
+
+    }
 
     return (
         <div className='flex flex-col w-full'>
             <ToolTitleButton title={"Equipment [E]"} isToggled={isToggled} onClick={handleTitleClick} />
             {isToggled && (<div className='flex flex-col p-1 divide-y divide-white'>
                 {
-                    Object.entries(equipmentSlotsDemo).map(([type, item], index) => {
-                        const Icon = toolIconMap[type] ?? fallBackIcon
-                        return (
-                            <ToolItemSlot key={index} Icon={Icon} itemName={item?.name} />
-                        )
+
+                    equipmentSlotsDemo.map((equipmentSlot) => {
+                        const Icon = toolIconMap[equipmentSlot.type] ?? fallBackIcon
+                        return (<ToolItemSlot
+                            key={equipmentSlot.id}
+                            Icon={Icon}
+                            item={equipmentSlot.item}
+                            actionType='remove'
+                            onActionClick={onActionClick} />)
                     })
                 }
 
