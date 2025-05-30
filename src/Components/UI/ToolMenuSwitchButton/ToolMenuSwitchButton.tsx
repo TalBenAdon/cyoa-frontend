@@ -1,15 +1,16 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 type ToolMenuSwitchButtonProps = ComponentPropsWithoutRef<'button'> & {
     title: string;
-    isToggled: boolean;
+    isToggled: string;
+
 }
 
 export default function ToolMenuSwitchButton({ title, isToggled, ...props }: ToolMenuSwitchButtonProps) {
 
 
     return (
-        <button className={`basis-1/2 hover:underline ${isToggled ?? 'underline'}`} {...props}>
+        <button className={`flex-1 hover:underline ${isToggled === title ? 'underline' : ''}`} {...props}>
             <p className="text-[12px] lg:text-xs">{title}</p>
         </button>
     )
