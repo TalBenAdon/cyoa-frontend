@@ -6,7 +6,7 @@ type ToolItemSlotProps = {
     Icon: React.FC<React.SVGProps<SVGSVGElement>>;
     item: Item | null;
     onActionClick: (id: string) => void
-    actionType: 'remove' | 'add' | null;
+    actionType: 'remove' | 'add' | 'use';
 }
 
 export default function ToolItemSlot({ item, Icon, onActionClick, actionType }: ToolItemSlotProps) {
@@ -22,7 +22,7 @@ export default function ToolItemSlot({ item, Icon, onActionClick, actionType }: 
 
     return (
         <div className="flex items-center text-[12px] lg:text-sm justify-between py-2 border-white/50"
-            onClick={actionType === null ? handleClick : undefined}>
+            onClick={actionType === 'use' ? handleClick : undefined}>
 
             <div className="flex items-center gap-1">
                 <Icon className="lg:w-[14px] lg:h-[14px]" />
