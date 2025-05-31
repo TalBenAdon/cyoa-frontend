@@ -6,6 +6,12 @@ export type Item = {
     type: string
 }
 
+export type useItem = {
+    id: string;
+    name: string,
+    description: string
+}
+
 export type StandardTypes = 'hat' | 'shirt' | 'pants' | 'shoes' | 'weapon' | 'gloves' | 'shield' | 'accessory'
 
 export const demoItem: Item = {
@@ -13,6 +19,15 @@ export const demoItem: Item = {
     name: 'hat of doom',
     description: 'it is very doomissh',
     type: 'hat'
+
+}
+
+
+export const demoItem2: Item = {
+    id: 'ae442',
+    name: 'peashooter',
+    description: 'very peashooter',
+    type: 'weapon'
 
 }
 
@@ -33,4 +48,17 @@ export const equipmentSlotsDemo: EquipmentSlot[] = [
     { id: 'shield', type: 'shield', item: null },
     { id: 'accessory', type: 'accessory', item: null },
 ]
+
+
+export const equipmentList: Item[] = [
+    demoItem, demoItem2
+]
+
+
+export const useItemsList: useItem[] = [
+    { id: 'sxg', name: 'rope', description: 'a rope' },
+    { id: 'sxg2', name: 'map', description: 'a map' },
+    { id: 'sxg4', name: 'hose', description: 'a hose' },
+]
+
 

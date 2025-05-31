@@ -11,9 +11,7 @@ export default function EquipmentTable() {
     const handleTitleClick = () => setIsToggled(!isToggled)
 
     const onActionClick = (id: string) => {
-
         console.log('removingItem');
-
     }
 
     return (
