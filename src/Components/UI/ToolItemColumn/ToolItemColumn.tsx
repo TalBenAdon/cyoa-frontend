@@ -15,7 +15,7 @@ export default function ToolItemSlot({ item, Icon, onActionClick, actionType }: 
     const iconClass = "lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer"
 
     const handleClick = () => {
-        if (!isEmpty && !actionType) {
+        if (!isEmpty && actionType === 'use') {
             onActionClick(item.id)
         }
     }
