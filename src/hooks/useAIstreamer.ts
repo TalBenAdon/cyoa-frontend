@@ -1,5 +1,5 @@
-import { useAdventureCoreStore } from "../store/useAdventureCoreStore"
-import { useAdventureUIStore } from "../store/useAdventureUIStore"
+import { useAdventureCoreStore } from "../stores/useAdventureCoreStore"
+import { useAdventureUIStore } from "../stores/useAdventureUIStore"
 import { postJson } from "../api/fetch"
 import { extractHeader } from "../utils/headers/extractHeader"
 import { decodeStreamBody } from "../utils/stream/decodeStreamBody"

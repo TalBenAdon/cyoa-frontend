@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useAdventureListsStore } from "../store/useAdventureListsStore"
+import { useAdventureListsStore } from "../stores/useAdventureListsStore"
 import { fetchAdventuresList } from "../api/adventures"
 
 export function useLoadAdventuresList() {
