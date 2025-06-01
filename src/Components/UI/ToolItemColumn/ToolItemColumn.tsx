@@ -1,27 +1,42 @@
 import RemoveIcon from '../../../assets/icons/remove.svg?react'
+import AddIcon from '../../../assets/icons/add.svg?react'
+import { Item } from '../../../utils/equipmentSlotsDemo';
 // import PlaceHolderIcon from "../../../assets/icons/StateWeapon.svg?react"
 type ToolItemSlotProps = {
     Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-    itemName?: string;
+    item: Item | null;
+    onActionClick: (id: string) => void
+    actionType: 'remove' | 'add' | 'use';
 }
 
-export default function ToolItemSlot({ itemName, Icon }: ToolItemSlotProps) {
-    const isEmpty = !itemName
+export default function ToolItemSlot({ item, Icon, onActionClick, actionType }: ToolItemSlotProps) {
+    const isEmpty = !item
 
+    const iconClass = "lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer"
 
-
+    const handleClick = () => {
+        if (!isEmpty && actionType === 'use') {
+            onActionClick(item.id)
+        }
+    }
 
     return (
-        <div className="flex items-center text-[12px] lg:text-sm justify-between py-2">
-            <div className="flex items-center">
+        <div className="flex items-center text-[12px] lg:text-sm justify-between py-2 border-white/50"
+            onClick={actionType === 'use' ? handleClick : undefined}>
+
+            <div className="flex items-center gap-1">
                 <Icon className="lg:w-[14px] lg:h-[14px]" />
                 <p className={`${isEmpty ? 'text-text-base' : ''}`}>
-                    {isEmpty ? '[empty slot]' : itemName}
+                    {isEmpty ? '[empty slot]' : item.name}
                 </p>
             </div>
-            {!isEmpty && (<button>
-                <RemoveIcon className="lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer" />
+            {!isEmpty && actionType && (<button onClick={() => onActionClick(item.id)}>
+                {actionType === 'remove' ? (<RemoveIcon className={iconClass} />) :
+                    actionType === 'add' ? <AddIcon className={iconClass} /> :
+                        ''
+                }
             </button>)}
+
         </div>
     )
 }
