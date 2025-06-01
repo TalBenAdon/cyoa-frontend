@@ -9,9 +9,11 @@ type sideBarListProps = {
     config: sideBarListConfigType;
 }
 
-export default function sideBarList({ config }: sideBarListProps) {
+export default function SideBarList({ config }: sideBarListProps) {
+
     const items = useSideBarStore(config.selector)
     const Component = config.component
+
     return (
         items.map((item, index) => {
             return (
