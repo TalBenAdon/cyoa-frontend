@@ -38,8 +38,7 @@ type EquipmentSlot = {
 }
 
 export const equipmentSlotsDemo: EquipmentSlot[] = [
-    { id: 'hat1', type: 'hat', item: null },
-    { id: 'hat2', type: 'hat', item: null },
+    { id: 'hat', type: 'hat', item: null },
     { id: 'shirt', type: 'shirt', item: null },
     { id: 'pants', type: 'pants', item: null },
     { id: 'shoes', type: 'shoes', item: null },

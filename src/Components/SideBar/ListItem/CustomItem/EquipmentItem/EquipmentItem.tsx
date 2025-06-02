@@ -1,12 +1,15 @@
-type EquipmentItemProps = {
-    item: string
-}
-export default function EquipmentItem({ item }: EquipmentItemProps) {
+
+export default function EquipmentSlot() {
+    const slots = use
 
 
     return (
         <div>
-            {item}
+            {item} removeicon
         </div>
     )
+
+
 }
+
+
