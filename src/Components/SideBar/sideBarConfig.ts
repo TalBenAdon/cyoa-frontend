@@ -7,7 +7,7 @@ type sideBarConfigType = {
     type: 'list' | 'block'
     config: {
         selector: (state: useToolsCoreStoreType) => any[]
-        component: React.ComponentType<{ item: any }>
+        component: React.ComponentType<{ item: any } & Record<string, any>>
     },
     extraProps?: Record<string, any>
 }
@@ -23,7 +23,8 @@ export const sideBarConfig: sideBarConfigType[] = [
         extraProps: {
             onRemove: (slotId: string, itemId: string) => {
                 //clearing from slot logic, api, store, for now, still just frontend
-                useToolsCoreStore(state => state.equipmentSlots)
+                const removeEquippedItem = useToolsCoreStore.getState().removeEquippedItem;
+                removeEquippedItem(slotId, itemId)
             }
         }
     },

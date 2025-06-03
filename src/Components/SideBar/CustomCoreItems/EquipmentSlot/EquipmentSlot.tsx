@@ -8,17 +8,13 @@ type EquipmentSlotType = {
         slotName: string,
         equippedItem: Item | null
     }
+    onRemove?: (slotId: string, itemId: string) => void;
 }
 
-export default function EquipmentSlot({ item }: EquipmentSlotType) {
-    const { slotName, equippedItem } = item
+export default function EquipmentSlot({ item, onRemove }: EquipmentSlotType) {
+    const { slotId, slotName, equippedItem } = item
     const iconClass = "lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer"
     const Icon = toolIconMap[slotName] ?? FallBackIcon
-
-    const handleOnRemoveClick = (id: 'string') => {
-        //api call to remove the item
-        //remove it from both the store and the server? or do these api calls? ->to server->to store?
-    }
 
     return (
         <>
@@ -27,7 +23,7 @@ export default function EquipmentSlot({ item }: EquipmentSlotType) {
                 <p className={`${!equippedItem && 'text-text-base'}`}>{`${equippedItem ? equippedItem.name : '[empty slot]'}`}</p>
             </button>
 
-            {equippedItem && <button >
+            {equippedItem && onRemove && <button onClick={() => onRemove(slotId, equippedItem.id)}>
                 <RemoveIcon className={iconClass} />
             </button>}
         </>
