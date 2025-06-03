@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react"
 import ToolTitleButton from "../ToolTitleButton/ToolTitleButton"
 import { sideBarConfig } from "./sideBarConfig"
-import SideBarList from "./SideBarList"
+import SideBarList from "./sideBarList"
 
 
 export default function SideBar() {
