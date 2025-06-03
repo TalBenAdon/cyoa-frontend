@@ -1,5 +1,5 @@
 import { useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
-import EquipmentSlot from "./ListItem/CustomItem/EquipmentItem/EquipmentItem";
+import EquipmentSlot from "./CustomCoreItems/EquipmentSlot/EquipmentSlot";
 
 type componentConfig = {
     selector: (state: useToolsCoreStoreType) => any[]
