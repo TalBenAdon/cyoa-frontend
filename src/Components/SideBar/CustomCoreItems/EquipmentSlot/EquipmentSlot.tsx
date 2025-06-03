@@ -4,6 +4,7 @@ import RemoveIcon from '../../../../assets/icons/remove.svg?react'
 import { toolIconMap } from "../../../../utils/toolIconMap"
 type EquipmentSlotType = {
     item: {
+        slotId: string,
         slotName: string,
         equippedItem: Item | null
     }
@@ -14,9 +15,10 @@ export default function EquipmentSlot({ item }: EquipmentSlotType) {
     const iconClass = "lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer"
     const Icon = toolIconMap[slotName] ?? FallBackIcon
 
-    // const handleOnClick = () => {
-    //     console.log('slot clicked');
-    // }
+    const handleOnRemoveClick = (id: 'string') => {
+        //api call to remove the item
+        //remove it from both the store and the server? or do these api calls? ->to server->to store?
+    }
 
     return (
         <>
@@ -25,7 +27,7 @@ export default function EquipmentSlot({ item }: EquipmentSlotType) {
                 <p className={`${!equippedItem && 'text-text-base'}`}>{`${equippedItem ? equippedItem.name : '[empty slot]'}`}</p>
             </button>
 
-            {equippedItem && <button>
+            {equippedItem && <button >
                 <RemoveIcon className={iconClass} />
             </button>}
         </>

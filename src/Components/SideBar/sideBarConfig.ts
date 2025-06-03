@@ -1,14 +1,15 @@
-import { useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
+import { useToolsCoreStore, useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
 import EquipmentSlot from "./CustomCoreItems/EquipmentSlot/EquipmentSlot";
 
-type componentConfig = {
-    selector: (state: useToolsCoreStoreType) => any[]
-    component: React.ComponentType<{ item: any }>
-}
+
 type sideBarConfigType = {
     title: string,
     type: 'list' | 'block'
-    config: componentConfig
+    config: {
+        selector: (state: useToolsCoreStoreType) => any[]
+        component: React.ComponentType<{ item: any }>
+    },
+    extraProps?: Record<string, any>
 }
 
 export const sideBarConfig: sideBarConfigType[] = [
@@ -18,6 +19,12 @@ export const sideBarConfig: sideBarConfigType[] = [
         config: {
             selector: (state: useToolsCoreStoreType) => state.equipmentSlots,
             component: EquipmentSlot
+        },
+        extraProps: {
+            onRemove: (slotId: string, itemId: string) => {
+                //clearing from slot logic, api, store, for now, still just frontend
+                useToolsCoreStore(state => state.equipmentSlots)
+            }
         }
     },
 ]

@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { Item } from '../utils/equipmentSlotsDemo'
 type InventoryItemType = {
     name: string,
     type: 'equipment' | 'use',
@@ -11,16 +12,34 @@ type InventoryItemType = {
     }
 }
 
+type equipmentSlot = {
+    slotId: string,
+    slotName: string,
+    equippedItem: Item | null
+}
+
 export type useToolsCoreStoreType = {
-    equipmentSlots: object[]
+    equipmentSlots: equipmentSlot[],
+    removeEquippedItem: (slotId: string, itemId: string) => void
 }
 
 export const useToolsCoreStore = create<useToolsCoreStoreType>((set) => ({
     equipmentItemsList: ['a', 'hi', 'sup'],
 
-    equipmentSlots: [{ slotName: 'hat', equippedItem: null }, { slotName: 'shirt', equippedItem: null }, { slotName: 'pants', equippedItem: null }, { slotName: 'accessory', equippedItem: null }, { slotName: 'gloves', equippedItem: null }],
+    equipmentSlots: [{ slotId: 'hat', slotName: 'hat', equippedItem: { id: '123', name: 'hat of doom', description: 'doomie', type: 'hat' } }, { slotId: 'shirt', slotName: 'shirt', equippedItem: null }, { slotId: 'pants', slotName: 'pants', equippedItem: null }, { slotId: 'accessory', slotName: 'accessory', equippedItem: null }, { slotId: 'gloves', slotName: 'gloves', equippedItem: null }],
 
-    inventoryItems: ['itemid1', 'itemid1', 'itemid1', 'itemid1', 'itemid1', 'itemid1']
+    inventoryItems: ['itemid1', 'itemid1', 'itemid1', 'itemid1', 'itemid1', 'itemid1'],
+
+
+    removeEquippedItem: (slotId: string, itemId: string) => {
+        set(state => {
+            const updated = [...state.equipmentSlots]
+            const index = updated.findIndex(slot => slot.slotId === slotId)
+            console.log(`in the inventory item ${itemId}, change status to "unequipped"`);
+            updated[index].equippedItem = null
+            return { equipmentSlots: updated }
+        })
+    }
 }))
 
 
