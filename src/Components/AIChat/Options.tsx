@@ -1,6 +1,6 @@
 
 import { useAIstreamer } from "../../hooks/useAIstreamer";
-import { useAdventureCoreStore } from "../../store/useAdventureCoreStore";
+import { useAdventureCoreStore } from "../../stores/useAdventureCoreStore";
 // import { useAdventureUIStore } from "../../../store/useAdventureUIStore";
 import Option from "./Option";
 

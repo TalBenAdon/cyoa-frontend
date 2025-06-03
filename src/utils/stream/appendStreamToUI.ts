@@ -1,4 +1,4 @@
-import { useAdventureUIStore } from "../../store/useAdventureUIStore"
+import { useAdventureUIStore } from "../../stores/useAdventureUIStore"
 
 export const appendStreamToUI = (toAppend: string, currentTag: string) => {
     const { streamStoryText, streamOptions } = useAdventureUIStore.getState()

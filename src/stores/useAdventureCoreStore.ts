@@ -15,3 +15,14 @@ export const useAdventureCoreStore = create<AdventureCoreType>((set) => ({
     setCurrentAdventureId: (id: string) => set({ currentAdventureId: id }),
     setAdventureInfo: (adventureInfo: AdventureInfoResponse) => set({ currentAdventureInfo: adventureInfo })
 }))
+
+
+
+
+// export const useItemsStore = create((set) => ({
+//     equipmentItems: [],
+//     inventoryItems: []
+//     ...
+
+
+// }))
