@@ -1,5 +1,6 @@
 import { useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
-import EquipmentItem from "./ListItem/CustomItem/EquipmentItem/EquipmentItem";
+import EquipmentSlot from "./ListItem/CustomItem/EquipmentItem/EquipmentItem";
+
 type componentConfig = {
     selector: (state: useToolsCoreStoreType) => any[]
     component: React.ComponentType<{ item: any }>
@@ -12,11 +13,11 @@ type sideBarConfigType = {
 
 export const sideBarConfig: sideBarConfigType[] = [
     {
-        title: 'Equipment',
+        title: 'Equipment [E]',
         type: 'list',
         config: {
-            selector: (state: useToolsCoreStoreType) => state.equipmentItemsList,
-            component: EquipmentItem
+            selector: (state: useToolsCoreStoreType) => state.equipmentSlots,
+            component: EquipmentSlot
         }
     },
 ]
