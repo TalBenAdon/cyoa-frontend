@@ -2,22 +2,24 @@ import { toolIconMap } from "../../../../utils/toolIconMap"
 import FallBackIcon from '../../../../assets/icons/StateGloves.svg?react'
 import AddIcon from '../../../../assets/icons/add.svg?react'
 type InventoryItemType = {
-    id: string,
-    name: string,
-    type: 'equipment' | 'use',
-    itemType: string,
-    description: string,
-    amount: number,
-    stats?: {
-        STR: number,
-        CON: number,
-        DEX: number,
+    item: {
+        id: string,
+        name: string,
+        type: 'equipment' | 'use',
+        itemType: string,
+        description: string,
+        amount: number,
+        stats?: {
+            STR: number,
+            CON: number,
+            DEX: number,
+        }
     }
-    onEquip: (id: string, itemType: string) => void
+    onEquip?: (id: string, itemType: string) => void
 }
 
-export default function InventoryItem({ id, name, itemType, onEquip }: InventoryItemType) {
-
+export default function InventoryItem({ item, onEquip }: InventoryItemType) {
+    const { id, name, itemType } = item
     const Icon = toolIconMap[itemType] ?? FallBackIcon
     const iconClass = "lg:w-[12px] lg:h-[12px] hover:opacity-50 cursor-pointer"
 

@@ -1,5 +1,6 @@
 import { useToolsCoreStore, useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
 import EquipmentSlot from "./CustomCoreItems/EquipmentSlot/EquipmentSlot";
+import InventoryItem from "./CustomCoreItems/InventoryItem/InventoryItem";
 
 
 type sideBarConfigType = {
@@ -28,4 +29,18 @@ export const sideBarConfig: sideBarConfigType[] = [
             }
         }
     },
+    {
+        title: 'Inventory [I]',
+        type: 'list',
+        config: {
+            selector: (state: useToolsCoreStoreType) => state.inventoryItems,
+            component: InventoryItem,
+        },
+        extraProps: {
+            onEquip: (id: string, itemType: string) => {
+                console.log(`adding item ${id} of type ${itemType}`);
+
+            }
+        }
+    }
 ]
