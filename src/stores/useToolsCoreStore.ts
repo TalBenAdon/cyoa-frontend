@@ -1,16 +1,5 @@
 import { create } from 'zustand'
 import { Item } from '../utils/equipmentSlotsDemo'
-type InventoryItemType = {
-    name: string,
-    type: 'equipment' | 'use',
-    description: string,
-    amount: number,
-    stats?: {
-        STR: number,
-        CON: number,
-        DEX: number,
-    }
-}
 
 type equipmentSlot = {
     slotId: string,
