@@ -6,7 +6,7 @@ import InventoryItem from "./CustomCoreItems/InventoryItem/InventoryItem";
 type sideBarConfigType = {
     title: string,
     type: 'list' | 'block',
-    menuKeys?: string[]
+    menuTypes?: string[]
     config: {
         selector: (state: useToolsCoreStoreType) => any[]
         component: React.ComponentType<{ item: any } & Record<string, any>>
@@ -33,7 +33,7 @@ export const sideBarConfig: sideBarConfigType[] = [
     {
         title: 'Inventory [I]',
         type: 'list',
-        menuKeys: ['Equipment', 'use'],
+        menuTypes: ['Equipment', 'use'],
         config: {
             selector: (state: useToolsCoreStoreType) => state.inventoryItems,
             component: InventoryItem,
