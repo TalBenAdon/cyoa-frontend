@@ -20,9 +20,13 @@ export default function SideBarList({ config, menuTypes }: sideBarListProps) {
     const extraProps = config.extraProps ?? {};
     const [selectedMenu, setSelectedMenu] = useState<string>(menuTypes ? menuTypes[0] : "")
 
+    const onSelect = (option: string) => {
+        setSelectedMenu(option)
+    }
+
     return (
         <>
-            {menuTypes && <ToolMenu options={menuTypes} />}
+            {menuTypes && <ToolMenu options={menuTypes} onSelect={onSelect} selected={selectedMenu} />}
             <div className="flex flex-col p-1 divide-y divide-white">
 
                 {items.map((item, index) => {
