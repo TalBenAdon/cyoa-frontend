@@ -6,11 +6,11 @@ type equipmentSlot = {
     slotName: string,
     equippedItem: Item | null
 }
-type InventoryItemType = {
+export type InventoryItemType = {
     id: string,
     name: string,
     type: 'equipment' | 'use',
-    itemType: string,
+    itemType?: string,
     description: string,
     amount: number,
     stats?: {
@@ -31,7 +31,7 @@ export const useToolsCoreStore = create<useToolsCoreStoreType>((set) => ({
 
     equipmentSlots: [{ slotId: 'hat', slotName: 'hat', equippedItem: { id: '123', name: 'hat of doom', description: 'doomie', type: 'hat' } }, { slotId: 'shirt', slotName: 'shirt', equippedItem: null }, { slotId: 'pants', slotName: 'pants', equippedItem: null }, { slotId: 'accessory', slotName: 'accessory', equippedItem: null }, { slotId: 'gloves', slotName: 'gloves', equippedItem: null }],
 
-    inventoryItems: [{ id: 'glv1', name: 'Subjugation Glove', type: 'equipment', itemType: 'glove', description: 'an glove', amount: 1 }],
+    inventoryItems: [{ id: 'glv1', name: 'Subjugation Glove', type: 'equipment', itemType: 'glove', description: 'an glove', amount: 1 }, { id: 'glv12', name: 'Funny Rope', type: 'use', description: 'A rope', amount: 1 }],
 
 
     removeEquippedItem: (slotId: string, itemId: string) => {
