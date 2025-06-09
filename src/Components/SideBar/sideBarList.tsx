@@ -31,11 +31,7 @@ export default function SideBarList({ config, menuTypes }: sideBarListProps) {
 
     useEffect(() => {
         setShownItems(shownItemsFilter())
-
-
     }, [selectedMenu])
-
-
 
 
     return (
