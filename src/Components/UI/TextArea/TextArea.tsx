@@ -39,9 +39,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             const shadow = shadowRef.current
             if (textArea && shadow) {
                 shadow.textContent = value + "\u200b"
-
-                // textArea.style.height = "auto";
-                // textArea.style.height = `${textArea.scrollHeight}px`;
                 textArea.style.height = shadow.offsetHeight + "px";
 
             }

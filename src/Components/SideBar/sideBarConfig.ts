@@ -1,10 +1,12 @@
 import { useToolsCoreStore, useToolsCoreStoreType } from "../../stores/useToolsCoreStore";
 import EquipmentSlot from "./CustomCoreItems/EquipmentSlot/EquipmentSlot";
+import InventoryItem from "./CustomCoreItems/InventoryItem/InventoryItem";
 
 
 type sideBarConfigType = {
     title: string,
-    type: 'list' | 'block'
+    type: 'list' | 'block',
+    menuTypes?: string[]
     config: {
         selector: (state: useToolsCoreStoreType) => any[]
         component: React.ComponentType<{ item: any } & Record<string, any>>
@@ -28,4 +30,19 @@ export const sideBarConfig: sideBarConfigType[] = [
             }
         }
     },
+    {
+        title: 'Inventory [I]',
+        type: 'list',
+        menuTypes: ['Equipment', 'Use'],
+        config: {
+            selector: (state: useToolsCoreStoreType) => state.inventoryItems,
+            component: InventoryItem,
+        },
+        extraProps: {
+            onEquip: (id: string, itemType: string) => {
+                console.log(`adding item ${id} of type ${itemType}`);
+
+            }
+        }
+    }
 ]

@@ -27,13 +27,14 @@ export default function SideBar() {
                     <div className='flex flex-col w-full'>
 
                         {sideBarConfig.map((sideBarItem, index) => {
-
                             if (sideBarItem.type === 'list') {
 
                                 return (
                                     <Fragment key={index}>
                                         <ToolTitleButton title={sideBarItem.title} isToggled={isToggled[index]} onClick={() => handleOnClick(index)} />
-                                        {isToggled[index] && <SideBarList config={{ ...sideBarItem.config, extraProps: sideBarItem.extraProps }} />}
+                                        {isToggled[index] && <SideBarList
+                                            config={{ ...sideBarItem.config, extraProps: sideBarItem.extraProps }}
+                                            {...(sideBarItem.menuTypes ? { menuTypes: sideBarItem.menuTypes } : {})} />}
                                     </Fragment>
 
                                 )
