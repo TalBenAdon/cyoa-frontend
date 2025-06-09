@@ -27,10 +27,8 @@ export default function EquipmentSlot({ item, onRemove }: EquipmentSlotType) {
                 <RemoveIcon className={iconClass} />
             </button>}
         </>
-
     )
-
-
 }
+
 
 
