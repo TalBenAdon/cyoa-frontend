@@ -33,7 +33,7 @@ export const sideBarConfig: sideBarConfigType[] = [
     {
         title: 'Inventory [I]',
         type: 'list',
-        menuTypes: ['Equipment', 'use'],
+        menuTypes: ['Equipment', 'Use'],
         config: {
             selector: (state: useToolsCoreStoreType) => state.inventoryItems,
             component: InventoryItem,
