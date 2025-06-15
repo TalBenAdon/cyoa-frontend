@@ -20,9 +20,7 @@ export default function SideBarList({ config, menuTypes }: sideBarListProps) {
     const extraProps = config.extraProps ?? {};
 
     const [selectedMenu, setSelectedMenu] = useState<string>(menuTypes ? menuTypes[0] : "")
-
     const shownItemsFilter = () => items.filter((item) => item['type'] === selectedMenu.toLocaleLowerCase())
-
     const [shownItems, setShownItems] = useState<any[]>(shownItemsFilter())
 
     const onSelect = (option: string) => {
