@@ -1,28 +1,38 @@
 import { create } from 'zustand'
-import { AdventureInfoResponse } from '../context/AdventureContext'
+
+type History = {
+    text: string;
+    options: string[];
+    chosenOption: string | null
+    sceneNumber: number
+}[]
+
+
+
+type Adventure = {
+    id: string,
+    title: string,
+    text: string,
+    sceneNumber: number,
+    options: string[],
+    history: History
+}
+
 
 type AdventureCoreType = {
-    currentAdventureId: string | null
-    currentAdventureInfo: AdventureInfoResponse | null
-    setCurrentAdventureId: (id: string) => void
-    setAdventureInfo: (adventureInfo: AdventureInfoResponse) => void
+    adventure: Adventure | null;
+    setAdventure: (adventure: Adventure) => void;
+    updateAdventure:(partial: Partial<Adventure>) => void;
 }
 
 export const useAdventureCoreStore = create<AdventureCoreType>((set) => ({
-    currentAdventureId: null,
-    currentAdventureInfo: null,
-
-    setCurrentAdventureId: (id: string) => set({ currentAdventureId: id }),
-    setAdventureInfo: (adventureInfo: AdventureInfoResponse) => set({ currentAdventureInfo: adventureInfo })
+    adventure: null,
+    setAdventure: (adventure: Adventure) => set({adventure}),
+    updateAdventure: (partial) => 
+        set((state)=> {
+            if(!state.adventure) return {};          
+            return { adventure: {...state.adventure, ...partial}}})
 }))
 
 
 
-
-// export const useItemsStore = create((set) => ({
-//     equipmentItems: [],
-//     inventoryItems: []
-//     ...
-
-
-// }))

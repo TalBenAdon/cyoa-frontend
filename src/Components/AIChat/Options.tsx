@@ -14,7 +14,7 @@ const placeHolderOptions = [
 export default function Options() {
 
     // const options = useAdventureUIStore(state => state.optionsList)
-    const adventureId = useAdventureCoreStore(state => state.currentAdventureId)
+    const adventureId = useAdventureCoreStore(state => state.adventureId)
     const { getStream } = useAIstreamer()
 
     const handleClick = (choiceText: string) => {
