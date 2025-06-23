@@ -19,7 +19,7 @@ export function useAIstreamer() {
     const currentTagRef = useRef<string>("")
 
 
-    const setCurrentAdventureId = useAdventureCoreStore((state) => state.setCurrentAdventureId)
+    const updateAdventure = useAdventureCoreStore((state) => state.updateAdventure)
     const reset = useAdventureUIStore((state) => state.reset)
 
 
@@ -32,7 +32,7 @@ export function useAIstreamer() {
             if (!adventureId) {
                 console.warn("Missing X-adventure-ID in response headers");
             } else {
-                setCurrentAdventureId(adventureId)
+                updateAdventure({id: adventureId})
             }
         }
         reset()

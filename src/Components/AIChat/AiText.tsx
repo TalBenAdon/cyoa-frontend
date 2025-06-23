@@ -10,8 +10,6 @@ export default function AiText() {
 
     return (
 
-        // header hardcoded for now
-
         <>
             <header className="flex flex-row items-center gap-4">
                 <p className="whitespace-nowrap text-2xl" >{myHeader}</p>

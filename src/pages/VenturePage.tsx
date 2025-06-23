@@ -4,7 +4,7 @@ import CustomChatBox from "../Components/CustomChatBox/CustomChatBox";
 // import AdventuresSideBar from "../Components/SideBar/SideBar";
 // import { useLoadAdventuresList } from "../hooks/useLoadAdventuresList";
 // import { useAdventureListsStore } from "../store/useAdventureListsStore";
-// import { useAIstreamer } from "../hooks/useAIstreamer";
+import { useAIstreamer } from "../hooks/useAIstreamer";
 
 
 
@@ -17,11 +17,11 @@ export default function VenturePage() {
     console.log("VenturePage rerendered")
     // const { loading, error } = useLoadAdventuresList()
     // const adventuresList = useAdventureListsStore((state) => state.adventuresList)
-    // const { getStream } = useAIstreamer()
+    const { getStream } = useAIstreamer()
 
-    // const onStartButtonClick = async () => {
-    //     getStream({ url: "/adventure/start", payload: { type: "fantasy" } })
-    // }
+    const onStartButtonClick = async () => {
+        getStream({ url: "/adventure/start", payload: { type: "fantasy" } })
+    }
 
 
 
