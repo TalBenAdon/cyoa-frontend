@@ -5,7 +5,7 @@ import "@fontsource/inter/300.css";
 import "@fontsource/inter/200.css";
 import './index.css'
 import App from './App.tsx'
-import { AdventureProvider } from './context/AdventureContext.tsx'
+// import { AdventureProvider } from './context/AdventureContext.tsx'
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router'
 import VenturePage from './pages/VenturePage.tsx'
 
@@ -22,8 +22,8 @@ let router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AdventureProvider>
+    {/* <AdventureProvider> */}
       <RouterProvider router={router} />
-    </AdventureProvider>
+    {/* </AdventureProvider> */}
   </StrictMode>,
 )
