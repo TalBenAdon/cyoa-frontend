@@ -10,6 +10,7 @@ export function processBufferChunks(chunk: string,
 
     buffer += chunk
     let optionCounter = 0
+    let doubleColonCheck = 0
     console.log({ "currentTag": currentTag });
     console.log({ "currentBuffer": buffer });
 
@@ -19,7 +20,7 @@ export function processBufferChunks(chunk: string,
             if (startMatch && startMatch.index !== undefined){
                 currentTag = startMatch[1];
                 buffer = buffer.slice(startMatch.index + startMatch[0].length)
-                if (startMatch[1]) {
+                if (startMatch[1] === "OPTION") {
                     optionCounter++
                 }
                 continue
@@ -30,7 +31,11 @@ export function processBufferChunks(chunk: string,
 
 
         const endIndex = buffer.indexOf("::END::")
+        
         if (endIndex !== -1) {
+
+
+
             const content = buffer.slice(0, endIndex)
             appendingFn(content, currentTag, optionCounter)
 
@@ -38,9 +43,33 @@ export function processBufferChunks(chunk: string,
             currentTag = ""
             continue
         } else {
-            if (currentTag) {
-                appendingFn(buffer, currentTag, optionCounter);
+           if (currentTag) {
+             
+             if(buffer.includes(":") && !buffer.includes("::")){
+                 if (doubleColonCheck === 0) {
+                     doubleColonCheck ++
+                     console.log("checked colon once");
+                     
+                     break
+                    } else  {
+                        appendingFn(buffer, currentTag, optionCounter)    
+                        buffer = ""
+                        break  
+                    }
+                    
+                    
+                }
+                
+                if(buffer.includes("::")){
+                    console.log("CONTINUING");
+                    
+                    break
+                }
+                
             }
+            
+            appendingFn(buffer, currentTag, optionCounter);
+            buffer = ""
             break
         }
     }
