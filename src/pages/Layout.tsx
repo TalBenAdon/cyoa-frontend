@@ -10,8 +10,8 @@ export default function Layout() {
                 <SideBar />
 
                 <div className="h-full grow gradient-border p-[1px] rounded-2xl">
-                    <div className="h-full grow bg-dark-main rounded-2xl">
-                        <div className="flex flex-col items-center h-full text-gradient-bg grow rounded-2xl p-9">
+                    <div className="flex flex-col h-full bg-dark-main rounded-2xl">
+                        <div className="flex flex-col items-center flex-1 text-gradient-bg rounded-2xl p-9">
 
 
                             <Outlet />

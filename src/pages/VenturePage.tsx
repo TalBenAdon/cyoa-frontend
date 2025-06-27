@@ -28,8 +28,8 @@ export default function VenturePage() {
     return (
 
 
-        <main className="lg:max-w-5xl flex flex-col items-center h-full">
-            <div className="overflow-y-auto h-full background-mask">
+        <main className=" w-full lg:max-w-5xl flex flex-col items-center h-full flex-grow min-h-full">
+            <div className="flex-grow w-full min-h-0 overflow-y-auto background-mask">
                 < AiText />
             </div>
             <CustomChatBox/>

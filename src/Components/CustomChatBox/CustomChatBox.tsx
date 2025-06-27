@@ -23,7 +23,7 @@ export default function CustomChatBox() {
 
 
     return (
-        <div className="flex flex-col gap-6 w-full bg-button-base p-4 rounded-2xl cursor-text" onClick={focusTextArea} >
+        <div className="shrink-0 flex flex-col gap-6 w-full bg-button-base p-4 rounded-2xl cursor-text" onClick={focusTextArea} >
             <TextArea ref={textAreaRef} value={text} placeHolder="Plan your next action" onChangeText={onChange} onSubmit={onSubmit} />
             <div className="flex justify-between items-center">
                 <DropDownMenu />
