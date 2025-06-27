@@ -1,8 +1,10 @@
 import EnterArrow from '../../assets/icons/arrowEnter.svg.svg?react'
+import { useAIstreamer } from '../../hooks/useAIstreamer'
 export default function EnterButton() {
-
+const {getStream} = useAIstreamer()
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
+        getStream({ url: "/adventure/start", payload: { type: "fantasy" } })
     }
 
     return (

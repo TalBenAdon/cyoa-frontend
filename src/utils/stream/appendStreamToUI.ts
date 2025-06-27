@@ -1,19 +1,18 @@
 import { useAdventureUIStore } from "../../stores/useAdventureUIStore"
 
-export const appendStreamToUI = (toAppend: string, currentTag: string) => {
+export const appendStreamToUI = (toAppend: string, currentTag: string, optionIndex: number) => {
     const { streamStoryText, streamOptions } = useAdventureUIStore.getState()
-    console.log(toAppend, currentTag);
+    console.log(`${toAppend} into tag: ${currentTag}`);
 
     switch (currentTag) {
-        case "text":
+        case "TITLE":
+            break;
+        case "TEXT":
             streamStoryText(toAppend)
             break;
 
-        case "option1":
-        case "option2":
-        case "option3": {
-
-            const index = Number(currentTag.slice(-1)) - 1;
+        case "OPTION": {
+            const index = (optionIndex - 1);
             streamOptions(index, toAppend)
             break
 

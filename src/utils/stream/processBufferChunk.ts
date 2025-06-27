@@ -5,10 +5,11 @@
 export function processBufferChunks(chunk: string,
     buffer: string,
     currentTag: string,
-    appendingFn: (text: string, tag: string) => void
+    appendingFn: (text: string, tag: string, optionCounter:number) => void
 ): { newBuffer: string, tag: string } {
 
     buffer += chunk
+    let optionCounter = 0
     console.log({ "currentTag": currentTag });
     console.log({ "currentBuffer": buffer });
 
@@ -18,6 +19,9 @@ export function processBufferChunks(chunk: string,
             if (startMatch && startMatch.index !== undefined){
                 currentTag = startMatch[1];
                 buffer = buffer.slice(startMatch.index + startMatch[0].length)
+                if (startMatch[1]) {
+                    optionCounter++
+                }
                 continue
             } else {
                 break;
@@ -28,14 +32,14 @@ export function processBufferChunks(chunk: string,
         const endIndex = buffer.indexOf("::END::")
         if (endIndex !== -1) {
             const content = buffer.slice(0, endIndex)
-            appendingFn(content, currentTag)
+            appendingFn(content, currentTag, optionCounter)
 
             buffer = buffer.slice(endIndex + "::END::".length)
             currentTag = ""
             continue
         } else {
             if (currentTag) {
-                appendingFn(buffer, currentTag);
+                appendingFn(buffer, currentTag, optionCounter);
             }
             break
         }

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 type useAdventureUIStoreType = {
+    storyTitle: string
     storyText: string
     optionsList: string[]
     reset: () => void
@@ -9,6 +10,7 @@ type useAdventureUIStoreType = {
 }
 
 export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
+    storyTitle:"",
     storyText: "",
     optionsList: [],
 
@@ -19,7 +21,7 @@ export const useAdventureUIStore = create<useAdventureUIStoreType>((set) => ({
     }),
 
     streamStoryText: (textBuffer: string) => set((state) => {
-
+                
         return { storyText: state.storyText + textBuffer }
     }),
 
