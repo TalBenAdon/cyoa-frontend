@@ -21,7 +21,9 @@ export function processBufferChunks(chunk: string,
                 currentTag = startMatch[1];
                 buffer = buffer.slice(startMatch.index + startMatch[0].length)
                 if (startMatch[1] === "OPTION") {
+                    
                     optionCounter++
+                    
                 }
                 continue
             } else {
