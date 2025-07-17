@@ -9,8 +9,7 @@ export function processBufferChunks(chunk: string,
 ) {
     
     parserRef.buffer += chunk
-    let optionCounter = 0
-    let doubleColonCheck = 0
+
     console.log({ "currentTag": parserRef.currentTag });
     console.log({ "currentBuffer": parserRef.buffer });
 
@@ -22,8 +21,8 @@ export function processBufferChunks(chunk: string,
                 parserRef.buffer =  parserRef.buffer.slice(startMatch.index + startMatch[0].length)
                 if (startMatch[1] === "OPTION") {
                     
-                    optionCounter++
-                    console.log(optionCounter);
+                     parserRef.optionCounter++
+                    console.log( parserRef.optionCounter);
                     
                     
                 }
@@ -41,7 +40,7 @@ export function processBufferChunks(chunk: string,
 
 
             const content = parserRef.buffer.slice(0, endIndex)
-            appendingFn(content, parserRef.currentTag, optionCounter)
+            appendingFn(content, parserRef.currentTag,  parserRef.optionCounter)
 
             parserRef.buffer = parserRef.buffer.slice(endIndex + "::END::".length)
             parserRef.currentTag = ""
@@ -50,13 +49,13 @@ export function processBufferChunks(chunk: string,
            if (parserRef.currentTag) {
              
              if(parserRef.buffer.includes(":") && !parserRef.buffer.includes("::")){
-                 if (doubleColonCheck === 0) {
-                     doubleColonCheck ++
+                 if ( parserRef.doubleColonCheck === 0) {
+                      parserRef.doubleColonCheck ++
                      console.log("checked colon once");
                      
                      break
                     } else  {
-                        appendingFn(parserRef.buffer, parserRef.currentTag, optionCounter)    
+                        appendingFn(parserRef.buffer, parserRef.currentTag,  parserRef.optionCounter)    
                         parserRef.buffer = ""
                         break  
                     }
@@ -72,7 +71,7 @@ export function processBufferChunks(chunk: string,
                 
             }
             
-            appendingFn(parserRef.buffer, parserRef.currentTag, optionCounter);
+            appendingFn(parserRef.buffer, parserRef.currentTag,  parserRef.optionCounter);
             parserRef.buffer = ""
             break
         }
