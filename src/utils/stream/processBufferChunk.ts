@@ -1,25 +1,25 @@
+import { parseState } from "../../hooks/useAIstreamer";
 
 
 
 
 export function processBufferChunks(chunk: string,
-    buffer: string,
-    currentTag: string,
+    parserRef: parseState,
     appendingFn: (text: string, tag: string, optionCounter:number) => void
-): { newBuffer: string, tag: string } {
-
-    buffer += chunk
+) {
+    
+    parserRef.buffer += chunk
     let optionCounter = 0
     let doubleColonCheck = 0
-    console.log({ "currentTag": currentTag });
-    console.log({ "currentBuffer": buffer });
+    console.log({ "currentTag": parserRef.currentTag });
+    console.log({ "currentBuffer": parserRef.buffer });
 
-    while (buffer.length > 0){
-        if (!currentTag) {
-            const startMatch = buffer.match(/::(TITLE|TEXT|OPTION)::/);
+    while (parserRef.buffer.length > 0){
+        if (!parserRef.currentTag) {
+            const startMatch = parserRef.buffer.match(/::(TITLE|TEXT|OPTION)::/);
             if (startMatch && startMatch.index !== undefined){
-                currentTag = startMatch[1];
-                buffer = buffer.slice(startMatch.index + startMatch[0].length)
+                parserRef.currentTag = startMatch[1];
+                parserRef.buffer =  parserRef.buffer.slice(startMatch.index + startMatch[0].length)
                 if (startMatch[1] === "OPTION") {
                     
                     optionCounter++
@@ -34,37 +34,37 @@ export function processBufferChunks(chunk: string,
         }
 
 
-        const endIndex = buffer.indexOf("::END::")
+        const endIndex = parserRef.buffer.indexOf("::END::")
         
         if (endIndex !== -1) {
 
 
 
-            const content = buffer.slice(0, endIndex)
-            appendingFn(content, currentTag, optionCounter)
+            const content = parserRef.buffer.slice(0, endIndex)
+            appendingFn(content, parserRef.currentTag, optionCounter)
 
-            buffer = buffer.slice(endIndex + "::END::".length)
-            currentTag = ""
+            parserRef.buffer = parserRef.buffer.slice(endIndex + "::END::".length)
+            parserRef.currentTag = ""
             continue
         } else {
-           if (currentTag) {
+           if (parserRef.currentTag) {
              
-             if(buffer.includes(":") && !buffer.includes("::")){
+             if(parserRef.buffer.includes(":") && !parserRef.buffer.includes("::")){
                  if (doubleColonCheck === 0) {
                      doubleColonCheck ++
                      console.log("checked colon once");
                      
                      break
                     } else  {
-                        appendingFn(buffer, currentTag, optionCounter)    
-                        buffer = ""
+                        appendingFn(parserRef.buffer, parserRef.currentTag, optionCounter)    
+                        parserRef.buffer = ""
                         break  
                     }
                     
                     
                 }
                 
-                if(buffer.includes("::")){
+                if(parserRef.buffer.includes("::")){
                     console.log("CONTINUING");
                     
                     break
@@ -72,12 +72,12 @@ export function processBufferChunks(chunk: string,
                 
             }
             
-            appendingFn(buffer, currentTag, optionCounter);
-            buffer = ""
+            appendingFn(parserRef.buffer, parserRef.currentTag, optionCounter);
+            parserRef.buffer = ""
             break
         }
     }
 
-    return {newBuffer : buffer,tag: currentTag}
+    
 
 }

@@ -14,7 +14,7 @@ type useAIStreamerProps = {
     payload: Payload,
 }
 
-type parseState = {
+export type parseState = {
     buffer: string,
     currentTag: string, 
     optionCounter: number,
@@ -56,7 +56,7 @@ export function useAIstreamer() {
 
 
         for await (const chunk of decodeStreamBody(response)) {
-            parserRef.current = processBufferChunks(chunk, parserRef.current, appendStreamToUI)
+        processBufferChunks(chunk, parserRef.current, appendStreamToUI)
          
         }
     }
