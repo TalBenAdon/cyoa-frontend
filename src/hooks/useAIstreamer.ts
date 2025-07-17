@@ -14,9 +14,24 @@ type useAIStreamerProps = {
     payload: Payload,
 }
 
+type parseState = {
+    buffer: string,
+    currentTag: string, 
+    optionCounter: number,
+    doubleColonCheck: number,
+}
+
 export function useAIstreamer() {
-    const bufferRef = useRef<string>("")
-    const currentTagRef = useRef<string>("")
+
+    const parserRef = useRef<parseState>({
+        buffer: "",
+        currentTag: "",
+        optionCounter: 0,
+        doubleColonCheck:0
+    })
+
+    // const bufferRef = useRef<string>("")
+    // const currentTagRef = useRef<string>("")
 
 
     const updateAdventure = useAdventureCoreStore((state) => state.updateAdventure)
@@ -38,14 +53,11 @@ export function useAIstreamer() {
         reset()
 
 
-        // let buffer = ""
-        // let currentTag = ""
 
 
         for await (const chunk of decodeStreamBody(response)) {
-            const { newBuffer, tag } = processBufferChunks(chunk, bufferRef.current, currentTagRef.current, appendStreamToUI)
-            bufferRef.current = newBuffer
-            currentTagRef.current = tag
+            parserRef.current = processBufferChunks(chunk, parserRef.current, appendStreamToUI)
+         
         }
     }
 

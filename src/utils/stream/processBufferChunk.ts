@@ -23,6 +23,8 @@ export function processBufferChunks(chunk: string,
                 if (startMatch[1] === "OPTION") {
                     
                     optionCounter++
+                    console.log(optionCounter);
+                    
                     
                 }
                 continue
