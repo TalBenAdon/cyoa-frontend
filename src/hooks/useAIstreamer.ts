@@ -35,7 +35,6 @@ export function useAIstreamer() {
     const updateAdventure = useAdventureCoreStore((state) => state.updateAdventure)
     const reset = useAdventureUIStore((state) => state.reset)
 
-
     const getStream = async ({ url, payload }: useAIStreamerProps) => {
 
         const response = await postJson(url, payload)
@@ -48,6 +47,7 @@ export function useAIstreamer() {
                 updateAdventure(adventureId)
             }
         }
+        parserRef.current.optionCounter = 0
         reset()
 
 
