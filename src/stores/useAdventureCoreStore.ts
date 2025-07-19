@@ -20,18 +20,21 @@ type Adventure = {
 
 
 type AdventureCoreType = {
-    adventure: Adventure | null;
-    setAdventure: (adventure: Adventure) => void;
-    updateAdventure:(partial: Partial<Adventure>) => void;
+    adventureId: string | null;
+    // setAdventure: (adventure: Adventure) => void;
+    updateAdventure: (id: string) => void;
+    // updateAdventure:(partial: Partial<Adventure>) => void;
 }
 
 export const useAdventureCoreStore = create<AdventureCoreType>((set) => ({
-    adventure: null,
-    setAdventure: (adventure: Adventure) => set({adventure}),
-    updateAdventure: (partial) => 
-        set((state)=> {
-            if(!state.adventure) return {};          
-            return { adventure: {...state.adventure, ...partial}}})
+    adventureId: null,
+    // setAdventure: (adventure: Adventure) => set({ adventure }),
+    updateAdventure: (id: string) =>
+        set({ adventureId: id })
+    // updateAdventure: (partial) => 
+    //     set((state)=> {
+    //         if(!state.adventure) return {};          
+    //         return { adventure: {...state.adventure, ...partial}}})
 }))
 
 

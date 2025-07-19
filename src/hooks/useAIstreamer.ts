@@ -45,7 +45,7 @@ export function useAIstreamer() {
             if (!adventureId) {
                 console.warn("Missing X-adventure-ID in response headers");
             } else {
-                updateAdventure({ id: adventureId })
+                updateAdventure(adventureId)
             }
         }
         reset()
@@ -57,6 +57,7 @@ export function useAIstreamer() {
             processBufferChunks(chunk, parserRef.current, appendStreamToUI)
 
         }
+
     }
 
     return { getStream }
