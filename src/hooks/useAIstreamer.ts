@@ -16,7 +16,7 @@ type useAIStreamerProps = {
 
 export type parseState = {
     buffer: string,
-    currentTag: string, 
+    currentTag: string,
     optionCounter: number,
     doubleColonCheck: number,
 }
@@ -27,11 +27,9 @@ export function useAIstreamer() {
         buffer: "",
         currentTag: "",
         optionCounter: 0,
-        doubleColonCheck:0
+        doubleColonCheck: 0
     })
 
-    // const bufferRef = useRef<string>("")
-    // const currentTagRef = useRef<string>("")
 
 
     const updateAdventure = useAdventureCoreStore((state) => state.updateAdventure)
@@ -47,7 +45,7 @@ export function useAIstreamer() {
             if (!adventureId) {
                 console.warn("Missing X-adventure-ID in response headers");
             } else {
-                updateAdventure({id: adventureId})
+                updateAdventure({ id: adventureId })
             }
         }
         reset()
@@ -56,8 +54,8 @@ export function useAIstreamer() {
 
 
         for await (const chunk of decodeStreamBody(response)) {
-        processBufferChunks(chunk, parserRef.current, appendStreamToUI)
-         
+            processBufferChunks(chunk, parserRef.current, appendStreamToUI)
+
         }
     }
 
